@@ -6,7 +6,7 @@ import Login from './pages/Login/Login'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CreateDrink from './pages/CreateDrink/CreateDrink'
-
+import StrangerDrinks from './components/StrangerDrinks/StrangerDrinks'
 import * as authService from './services/authService'
 import * as drinkService from './services/drinkService'
 import AddIngredient from './pages/AddIngredient/AddIngredient'
