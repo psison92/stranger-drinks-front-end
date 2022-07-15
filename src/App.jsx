@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
-
 import NavBar from './components/NavBar/NavBar'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CreateDrink from './pages/CreateDrink/CreateDrink'
-import AddIngredient from './pages/AddIngredient/AddIngredient'
 
 import * as authService from './services/authService'
-import StrangerDrinks from './components/StrangerDrinks/StrangerDrinks'
 import * as drinkService from './services/drinkService'
+import AddIngredient from './pages/AddIngredient/AddIngredient'
+import DrinksPage from './pages/DrinksPage/DrinksPage'
 import * as ingredientService from './services/ingredientService'
+
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -92,6 +92,10 @@ const App = () => {
         <Route
           path="/add"
           element={user ? <CreateDrink handleAddDrink={handleAddDrink} /> : <Navigate to="/login" />}
+        />
+        <Route 
+          path="/" 
+          element={<DrinksPage drinks={drinks} user={user} />}
         />
       </Routes>
     </>
