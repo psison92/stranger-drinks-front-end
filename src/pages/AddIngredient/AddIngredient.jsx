@@ -47,20 +47,22 @@ const AddIngredient = (props) => {
 					/>
 				</div>
 				<div className="form-group mb-3">
-					<label htmlFor="breed-input" className="form-label">
-						Puppy's Breed (required)
+					<label htmlFor="type-input" className="form-label">
+						Type:
 					</label>
-					<select 
+					<input 
 						type="text"
+						className="form-control"
+						id="type-input"
 						name="type"
-            value={formData.breed}
+            value={formData.type}
             onChange={handleChange}
 						required
 					/>
 				</div>
 				<div className="form-group mb-4">
 					<label htmlFor="age-input" className="form-label">
-						Puppy's Age
+						Quantity:
 					</label>
 					<input 
 						type="number"
@@ -71,16 +73,31 @@ const AddIngredient = (props) => {
             onChange={handleChange}
 					/>
 				</div>
-				<div className="form-group mb-4">
-					<label htmlFor="photo-upload" className="form-label">
-						Upload Photo
+				<div className="form-group mb-3">
+					<label htmlFor="type-input" className="form-label">
+						Type of Measurement (required)
 					</label>
 					<input 
-						type="file"
+						type="text"
 						className="form-control"
-						id="photo-upload"
-						name="photo"
-						onChange={handleChangePhoto}
+						id="type-input"
+						name="type"
+            value={formData.type}
+            onChange={handleChange}
+						required
+					/>
+				</div>
+				<div className="form-group mb-4">
+					<label htmlFor="age-input" className="form-label">
+						ABV:
+					</label>
+					<input 
+						type="number"
+						className="form-control"
+						id="age-input"
+						name="age"
+            value={formData.age}
+            onChange={handleChange}
 					/>
 				</div>
 				<div className="d-grid">
