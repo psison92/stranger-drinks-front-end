@@ -10,6 +10,7 @@ import CreateDrink from './pages/CreateDrink/CreateDrink'
 
 import * as authService from './services/authService'
 import * as drinkService from './services/drinkService'
+import AddIngredient from './pages/AddIngredient/AddIngredient'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -64,6 +65,10 @@ const App = () => {
         <Route
           path="/profiles"
           element={user ? <Profiles /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/add-ingredient"
+          element={<AddIngredient />}
         />
         <Route
           path="/changePassword"

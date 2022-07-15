@@ -7,6 +7,7 @@ const NavBar = ({ user, handleLogout }) => {
       {user ?
         <nav>
             <Link to='/add'>Mix your Drink</Link>
+            <Link to='/add-ingredient'>Add Ingredient</Link>
             <Link to='/'>Drinks</Link>
             <Link to="/profiles">Profiles</Link>
             <Link to="" onClick={handleLogout}>LOG OUT</Link>
