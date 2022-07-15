@@ -7,6 +7,7 @@ import Login from './pages/Login/Login'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
+import StrangerDrinks from './components/StrangerDrinks/StrangerDrinks'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
