@@ -3,7 +3,9 @@ import styles from './StrangerDrinks.module.css'
 const StrangerDrinks = (props) => {
   return (
     <>
-        <div class="st">
+
+    <div class="st">
+
 
 <div class="st-top">
   <div class="st-bound st-bound-full"></div>
