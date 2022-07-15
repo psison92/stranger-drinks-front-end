@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 
-function AddPuppy(props) {
+const AddIngredient = (props) => {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
@@ -25,16 +25,16 @@ function AddPuppy(props) {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    props.handleAddPuppy(formData, photoData.photo)
+    props.handleAddIngredient(formData, photoData.photo)
   }
 
 	return (
 		<>
-			<h1>Add Puppy</h1>
+			<h1>Add Ingredient</h1>
 			<form autoComplete="off" ref={formElement} onSubmit={handleSubmit}>
 				<div className="form-group mb-3">
 					<label htmlFor="name-input" className="form-label">
-						Puppy's Name (required)
+						Ingredient Name (required)
 					</label>
 					<input 
 						type="text"
@@ -50,11 +50,9 @@ function AddPuppy(props) {
 					<label htmlFor="breed-input" className="form-label">
 						Puppy's Breed (required)
 					</label>
-					<input 
+					<select 
 						type="text"
-						className="form-control"
-						id="breed-input"
-						name="breed"
+						name="type"
             value={formData.breed}
             onChange={handleChange}
 						required
@@ -99,4 +97,4 @@ function AddPuppy(props) {
 	)
 }
 
-export default AddPuppy
+export default AddIngredient

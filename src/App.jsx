@@ -7,6 +7,7 @@ import Login from './pages/Login/Login'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
+import AddIngredient from './pages/AddIngredient/AddIngredient'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -35,6 +36,10 @@ const App = () => {
             <Route
               path="/login"
               element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
+            />
+            <Route
+              path="/add-ingredient"
+              element={<AddIngredient />}
             />
             <Route
               path="/profiles"
