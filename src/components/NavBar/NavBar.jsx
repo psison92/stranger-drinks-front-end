@@ -4,11 +4,10 @@ const NavBar = ({ user, handleLogout }) => {
   return (
     <>
     <header className='App-header'>
-      Stranger Drinks
       {user ?
         <nav>
             <Link to='/add'>Mix your Drink</Link>
-            <Link to='/'>/Drinks</Link>
+            <Link to='/'>Drinks</Link>
             <Link to="/profiles">Profiles</Link>
             <Link to="" onClick={handleLogout}>LOG OUT</Link>
             <Link to="/changePassword">Change Password</Link>
@@ -20,6 +19,9 @@ const NavBar = ({ user, handleLogout }) => {
         </nav>
       }
     </header>
+    <div>
+      <h1>Stranger Drinks</h1>
+    </div>
     </>
   )
 }

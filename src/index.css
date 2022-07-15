@@ -43,3 +43,7 @@ nav > a {
 .m-left {
   margin-left: 10px;
 }
+
+h1 {
+  text-align: center;
+}
