@@ -51,35 +51,6 @@ const App = () => {
 
   return (
     <>
-<<<<<<< HEAD
-      <div className='App'>
-        <NavBar user={user} handleLogout={handleLogout} />
-        <main>
-          <Routes>
-            <Route
-              path="/signup"
-              element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
-            />
-            <Route
-              path="/login"
-              element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
-            />
-            <Route
-              path="/add-ingredient"
-              element={<AddIngredient />}
-            />
-            <Route
-              path="/profiles"
-              element={user ? <Profiles /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/changePassword"
-              element={user ? <ChangePassword handleSignupOrLogin={handleSignupOrLogin}/> : <Navigate to="/login" />}
-            />
-          </Routes>
-        </main>
-      </div>
-=======
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
         <Route
@@ -109,7 +80,6 @@ const App = () => {
           element={user ? <CreateDrink handleAddDrink={handleAddDrink} /> : <Navigate to="/login" />}
         />
       </Routes>
->>>>>>> main
     </>
   )
 }
