@@ -3,7 +3,9 @@ import styles from './StrangerDrinks.module.css'
 const StrangerDrinks = (props) => {
   return (
     <>
+
     <div class="st">
+
 
 <div class="st-top">
   <div class="st-bound st-bound-full"></div>
@@ -16,6 +18,7 @@ const StrangerDrinks = (props) => {
 <div class="st-bottom">
   <p><span class="st-things-t">D</span><span class="st-things-h">r</span><span class="st-things-i">i</span><span class="st-things-n">n</span><span class="st-things-g">k</span><span class="st-things-s">s</span></p>
 </div>
+
 </div>
     </>
   )

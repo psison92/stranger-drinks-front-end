@@ -5,15 +5,11 @@ const AddIngredient = (props) => {
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
-    breed: '',
-    age: 0
+    type: '',
+    quantity: 0,
+		typeOfMeasurement: '',
+		abv: 0,
   })
-
-	const [photoData, setPhotoData] = useState({})
-
-	const handleChangePhoto = evt => {
-		setPhotoData({ photo: evt.target.files[0] })
-	}
 
   const handleChange = evt => {
 		setFormData({ ...formData, [evt.target.name]: evt.target.value })
@@ -25,7 +21,7 @@ const AddIngredient = (props) => {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    props.handleAddIngredient(formData, photoData.photo)
+    props.handleAddIngredient(formData)
   }
 
 	return (
@@ -47,40 +43,57 @@ const AddIngredient = (props) => {
 					/>
 				</div>
 				<div className="form-group mb-3">
-					<label htmlFor="breed-input" className="form-label">
-						Puppy's Breed (required)
+					<label htmlFor="type-input" className="form-label">
+						Type:
 					</label>
-					<select 
+					<input 
 						type="text"
+						className="form-control"
+						id="type-input"
 						name="type"
-            value={formData.breed}
+            value={formData.type}
             onChange={handleChange}
 						required
 					/>
 				</div>
 				<div className="form-group mb-4">
 					<label htmlFor="age-input" className="form-label">
-						Puppy's Age
+						Quantity:
 					</label>
 					<input 
 						type="number"
 						className="form-control"
-						id="age-input"
-						name="age"
-            value={formData.age}
+						id="quantity-input"
+						name="quantity"
+            value={formData.quantity}
             onChange={handleChange}
 					/>
 				</div>
-				<div className="form-group mb-4">
-					<label htmlFor="photo-upload" className="form-label">
-						Upload Photo
+				<div className="form-group mb-3">
+					<label htmlFor="type-input" className="form-label">
+						Type of Measurement (required)
 					</label>
 					<input 
-						type="file"
+						type="text"
 						className="form-control"
-						id="photo-upload"
-						name="photo"
-						onChange={handleChangePhoto}
+						id="typeOfMeasurement-input"
+						name="typeOfMeasurement"
+            value={formData.typeOfMeasurement}
+            onChange={handleChange}
+						required
+					/>
+				</div>
+				<div className="form-group mb-4">
+					<label htmlFor="age-input" className="form-label">
+						ABV(%):
+					</label>
+					<input 
+						type="number"
+						className="form-control"
+						id="abv-input"
+						name="abv"
+            value={formData.abv}
+            onChange={handleChange}
 					/>
 				</div>
 				<div className="d-grid">
@@ -89,7 +102,7 @@ const AddIngredient = (props) => {
 						className="btn btn-primary btn-fluid"
             disabled={!validForm}
 					>
-						Add Puppy
+						Add Ingredient
 					</button>
 				</div>
 			</form>

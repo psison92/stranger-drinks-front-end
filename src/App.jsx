@@ -6,14 +6,18 @@ import Login from './pages/Login/Login'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CreateDrink from './pages/CreateDrink/CreateDrink'
+
 import * as authService from './services/authService'
 import * as drinkService from './services/drinkService'
 import AddIngredient from './pages/AddIngredient/AddIngredient'
 import DrinksPage from './pages/DrinksPage/DrinksPage'
+import * as ingredientService from './services/ingredientService'
+
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [drinks, setDrinks] = useState([])
+  const [ingredients, setIngredients] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -42,6 +46,12 @@ const App = () => {
     setDrinks([...drinks, newDrink])
     navigate('/') // FIXME Where would we like the user to go after creating a drink
   }
+  
+  const handleAddIngredient = async (newIngredientData) => {
+    const newIngredient = await ingredientService.create(newIngredientData)
+    setIngredients([...ingredients, newIngredient])
+    navigate('/')
+  }
 
   const drinkPhotoHelper = async (photo, id) => {
     const photoData = new FormData()
@@ -67,7 +77,7 @@ const App = () => {
         />
         <Route
           path="/add-ingredient"
-          element={<AddIngredient />}
+          element={<AddIngredient handleAddIngredient={handleAddIngredient} />}
         />
         <Route
           path="/changePassword"
