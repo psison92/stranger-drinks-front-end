@@ -7,6 +7,7 @@ import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CreateDrink from './pages/CreateDrink/CreateDrink'
 import StrangerDrinks from './components/StrangerDrinks/StrangerDrinks'
+
 import * as authService from './services/authService'
 import * as drinkService from './services/drinkService'
 import AddIngredient from './pages/AddIngredient/AddIngredient'
@@ -92,7 +93,7 @@ const App = () => {
         />
         <Route
           path="/add"
-          element={user ? <CreateDrink handleAddDrink={handleAddDrink} /> : <Navigate to="/login" />}
+          element={user ? <CreateDrink handleAddDrink={handleAddDrink} ingredients={ingredients}/> : <Navigate to="/login" />}
         />
         <Route 
           path="/" 
