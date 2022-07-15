@@ -1,17 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+
 import NavBar from './components/NavBar/NavBar'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
-import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ProfileView from './pages/ProfileView/ProfileView'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import CreateDrink from './pages/CreateDrink/CreateDrink'
+
 import * as authService from './services/authService'
+import * as drinkService from './services/drinkService'
+import AddIngredient from './pages/AddIngredient/AddIngredient'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
+  const [drinks, setDrinks] = useState([])
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchAllDrinks = async () => {
+      const drinkData = await drinkService.getAll()
+      setDrinks(drinkData)
+    }
+    fetchAllDrinks()
+  }, [])
 
   const handleLogout = () => {
     authService.logout()
@@ -23,11 +36,25 @@ const App = () => {
     setUser(authService.getUser())
   }
 
+  const handleAddDrink = async (newDrinkData, photo) => {
+    const newDrink = await drinkService.create(newDrinkData)
+    if (photo) {
+      newDrink.photo = await drinkPhotoHelper(photo, newDrink._id)
+    }
+    setDrinks([...drinks, newDrink])
+    navigate('/') // FIXME Where would we like the user to go after creating a drink
+  }
+
+  const drinkPhotoHelper = async (photo, id) => {
+    const photoData = new FormData()
+    photoData.append('photo', photo) // allows for sending files
+    return await drinkService.addPhoto(photoData, id)
+  }
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<Landing user={user} />} />
         <Route
           path="/signup"
           element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
@@ -45,6 +72,10 @@ const App = () => {
           element={<ProfileView />}
         />
         <Route
+          path="/add-ingredient"
+          element={<AddIngredient />}
+        />
+        <Route
           path="/changePassword"
           element={
             user ? (
@@ -53,6 +84,10 @@ const App = () => {
               <Navigate to="/login" />
             )
           }
+        />
+        <Route
+          path="/add"
+          element={user ? <CreateDrink handleAddDrink={handleAddDrink} /> : <Navigate to="/login" />}
         />
       </Routes>
     </>

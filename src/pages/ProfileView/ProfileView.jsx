@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getDetails } from '../../services/profileService'
+import styles from './ProfileView.module.css'
 
-const ProfileView = ({ profile }) => {
-  const setProfileView = useState({})
+const ProfileView = (props) => {
+  const [profileView, setProfileView] = useState({})
   const location = useLocation()
   
   useEffect(() => {
@@ -15,11 +16,13 @@ const ProfileView = ({ profile }) => {
   },[location.state.profile.url])
   
   return (
-    <main>
-    <h1> hey look its {profile.name} </h1>
-    <h2></h2>
-    </main>
-
+    <>
+      <main>
+        <h1> hey look its {props.profile.name} </h1>
+        <h2>AAAAAAAAAAAAAAAAAAAAAAAAA</h2>
+      </main>
+    </>
+    
   )
 }
 
