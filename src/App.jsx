@@ -62,6 +62,7 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
+      <StrangerDrinks />
       <Routes>
         <Route
           path="/signup"
