@@ -85,7 +85,7 @@ const App = () => {
         />
         <Route 
           path="/" 
-          element={<DrinksPage />}
+          element={<DrinksPage drinks={drinks} user={user} />}
         />
       </Routes>
     </>
