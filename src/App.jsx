@@ -91,7 +91,7 @@ const App = () => {
         />
         <Route
           path="/add"
-          element={user ? <CreateDrink handleAddDrink={handleAddDrink} /> : <Navigate to="/login" />}
+          element={user ? <CreateDrink handleAddDrink={handleAddDrink} ingredients={ingredients}/> : <Navigate to="/login" />}
         />
       </Routes>
     </>
