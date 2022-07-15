@@ -18,7 +18,7 @@ const CreateDrink = props => {
 
   const handleSubmit = evt => {
 		evt.preventDefault()
-    props.handleAddPuppy(formData, photoData.photo)
+    props.handleAddDrink(formData, photoData.photo)
 	}
 
 	const handleChangePhoto = evt => {

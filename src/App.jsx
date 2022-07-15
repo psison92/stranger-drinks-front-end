@@ -78,8 +78,8 @@ const App = () => {
           }
         />
         <Route
-          path="/mixDrink"
-          element={user ? <CreateDrink /> : <Navigate to="/login" />}
+          path="/add"
+          element={user ? <CreateDrink handleAddDrink={handleAddDrink} /> : <Navigate to="/login" />}
         />
       </Routes>
     </>
