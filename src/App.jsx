@@ -9,11 +9,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CreateDrink from './pages/CreateDrink/CreateDrink'
 
 import * as authService from './services/authService'
-<<<<<<< HEAD
-import AddIngredient from './pages/AddIngredient/AddIngredient'
-=======
 import * as drinkService from './services/drinkService'
->>>>>>> main
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
