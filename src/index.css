@@ -147,3 +147,7 @@ body {
 .st-things-g {
   letter-spacing: -3px;
 }
+
+label {
+  color: red;
+}
