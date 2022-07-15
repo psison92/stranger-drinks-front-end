@@ -134,23 +134,19 @@ const top100Films = [
   { label: 'Monty Python and the Holy Grail', year: 1975 },
 ];
 
-
-
 const CreateDrink = props => {
   const formElement = useRef()
 	const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
 		name: '',
 		alternateName: '',
-		ingredients: []
+		recipe: [],
+		photo: ''
 	})
   
 	const [photoData, setPhotoData] = useState({})
 
 	const handleChange = evt => {
-		console.dir(evt.target)
-		console.log(evt.target.name)
-		console.log(evt.target.value)
 		setFormData({ ...formData, [evt.target.name]: evt.target.value })
 	}
 
@@ -169,88 +165,51 @@ const CreateDrink = props => {
 
   return (
     <div className={styles.container}>
-		<h1>Mix Drink</h1>
-		<form autoComplete="off" ref={formElement} onSubmit={handleSubmit}>
-			<div>
-				<TextField
-					required
-					name="name"
-					id="name-input"
-					label="Name Required"
-					value={formData.name}
-					onChange={handleChange}
-				/>
-			</div>
-			<div>
-				<TextField
-					id="alternateName-input"
-					label="Alternate Name"
-					value={formData.alternateName}
-					onChange={handleChange}
-				/>
-			</div>
-
-
-
-					{/* <label htmlFor="name-input" className="form-label">
-						Drink's Name (required)
-					</label>
-					<input 
-						type="text"
-						className="form-control"
-						id="name-input"
+			<h1>Mix Drink</h1>
+			<form autoComplete="off" ref={formElement} onSubmit={handleSubmit}>
+				<div>
+					<TextField
+						required
 						name="name"
+						id="name-input"
+						label="Name Required"
 						value={formData.name}
 						onChange={handleChange}
-						required
 					/>
-				</div> */}
-				{/* <div className="form-group mb-3">
-				<label htmlFor="alternateName-input" className="form-label">
-						Alternate Name
-					</label>
-					<input 
-						type="text"
-						className="form-control"
-						id="alternateName-input"
+				</div>
+				<div>
+					<TextField
 						name="alternateName"
+						id="alternateName-input"
+						label="Alternate Name"
 						value={formData.alternateName}
 						onChange={handleChange}
 					/>
-				</div> */}
-				<div>
-				<Autocomplete
-					disablePortal
-					id="combo-box-demo"
-					options={top100Films}
-					sx={{ width: 300 }}
-					renderInput={(params) => <TextField {...params} label="Ingriedient" />}
-				/>
 				</div>
 				<div className="form-group mb-4">
-					<label htmlFor="photo-upload" className="form-label">
+					<Button variant="contained" component="label">
 						Upload Photo
-					</label>
-					<input 
-						type="file"
-						className="form-control"
-						id="photo-upload"
-						name="photo"
-						value={formData.photo}
-						onChange={handleChangePhoto}
-					/>
+						<input 
+							hidden 
+							accept="image/*" 
+							multiple type="file"
+							id="photo-upload"
+							name="photo"
+							onChange={handleChangePhoto}
+							/>
+					</Button>
 				</div>
 				<div className="d-grid">
-					<button
+					<Button 
 						type="submit"
-						className="btn btn-primary btn-fluid"
+						variant="contained"
 						disabled={!validForm}
 					>
 						Add Your Drink
-					</button>
+					</Button>
 				</div>
 			</form>
-    </div>
+		</div>
   )
 }
 
