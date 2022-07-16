@@ -14,12 +14,16 @@ import AddIngredient from './pages/AddIngredient/AddIngredient'
 import DrinksPage from './pages/DrinksPage/DrinksPage'
 import * as ingredientService from './services/ingredientService'
 import EditDrink from './pages/EditDrink/EditDrink'
+import AddReview from './components/ReviewComponents/AddReview'
+import * as reviewService from './services/reviewService'
 
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [drinks, setDrinks] = useState([])
   const [ingredients, setIngredients] = useState([])
+  const [reviews, setReviews] = useState([])
+  
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -52,6 +56,12 @@ const App = () => {
   const handleAddIngredient = async (newIngredientData) => {
     const newIngredient = await ingredientService.create(newIngredientData)
     setIngredients([...ingredients, newIngredient])
+    navigate('/')
+  }
+  
+  const handleAddReview = async (newReviewData) => {
+    const newReview = await reviewService.create(newReviewData)
+    setReviews([...reviews, newReview])
     navigate('/')
   }
 
@@ -118,6 +128,10 @@ const App = () => {
           path='/edit'
           element={<EditDrink handleUpdateDrink={handleUpdateDrink} />}        
         
+        />
+        <Route
+          path='/add-review'
+          element={<AddReview handleAddReview={handleAddReview} />}        
         />
 
         <Route 
