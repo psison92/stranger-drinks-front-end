@@ -60,6 +60,11 @@ const App = () => {
     return await drinkService.addPhoto(photoData, id)
   }
 
+  const handleDeleteDrink = async id => {
+    const deletedDrink = await drinkService.deleteOne(id)
+    setDrinks(drinks.filter(drink => drink._id)!== deletedDrink._id)
+  }
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
@@ -97,7 +102,12 @@ const App = () => {
         />
         <Route 
           path="/" 
-          element={<DrinksPage drinks={drinks} user={user} />}
+          element={
+          <DrinksPage 
+            drinks={drinks} 
+            user={user}
+            handleDeleteDrink={handleDeleteDrink} 
+          />}
         />
       </Routes>
     </>

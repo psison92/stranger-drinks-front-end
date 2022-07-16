@@ -1,4 +1,5 @@
 import DrinkCard from "../../components/DrinkCard/DrinkCard";
+import './DrinksPage.css'
 
 const DrinksPage = (props) => {
   return (
@@ -10,6 +11,7 @@ const DrinksPage = (props) => {
         key={drink.id}
         drink={drink}
         user={props.user}
+        handleDeleteDrink={props.handleDeleteDrink}
         />
         )}
       </div>
