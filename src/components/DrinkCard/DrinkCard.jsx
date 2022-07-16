@@ -23,6 +23,11 @@ const DrinkCard = ({drink, user, handleDeleteDrink}) => {
           >
             Delete
           </button>
+          <Link
+            to={`/drink/${drink._id}`}
+            className='btn btn-sm btn-info'
+            > Details
+          </Link>
         </div>
       }
     </div>
