@@ -70,7 +70,7 @@ const EditDrink = (props) => {
 						Edit Your Drink
 					</Button>
           <Link
-						to="/"
+						to="/drinks"
 						className="btn btn-danger btn-fluid"
 					>
 						Cancel
