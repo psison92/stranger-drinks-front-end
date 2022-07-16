@@ -64,6 +64,7 @@ const App = () => {
   const handleDeleteDrink = async id => {
     const deletedDrink = await drinkService.deleteOne(id)
     setDrinks(drinks.filter(drink => drink._id)!== deletedDrink._id)
+    navigate('/add')
   }
 
   const handleUpdateDrink = async (updatedDrinkData, photo) => {
