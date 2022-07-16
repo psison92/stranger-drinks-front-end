@@ -18,11 +18,13 @@ const Profiles = () => {
       <h1>Hello. This is a list of all the profiles.</h1>
       {profiles.length ? 
         <>
-          {profiles.map(profile =>
-            <link key={profile._id} to="/profile-view" state={{ profile }}>
-              <p key={profile._id}>{profile.name}</p>
-            </link>
-          )}
+          {profiles.map(profile => 
+          <Link to='/profile-view' key={profile._id} state={{ profile }}>
+            <div >
+            <h2>{profile.name}</h2>
+            </div>
+          </Link>
+            )}
         </>
       :
         <p>No profiles yet</p>
