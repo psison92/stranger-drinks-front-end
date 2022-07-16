@@ -11,7 +11,7 @@ form {
   min-width: 300px;
 }
 
-.container div, label, h1 {
+.container div {
   color: rgb(25, 25, 25);
   padding-bottom: 0.5rem;
   padding-right: 0.5rem;

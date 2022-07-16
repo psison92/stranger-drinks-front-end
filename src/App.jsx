@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
-
 import NavBar from './components/NavBar/NavBar'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
@@ -8,17 +7,24 @@ import Profiles from './pages/Profiles/Profiles'
 import ProfileView from './pages/ProfileView/ProfileView'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CreateDrink from './pages/CreateDrink/CreateDrink'
-import AddIngredient from './pages/AddIngredient/AddIngredient'
+import StrangerDrinks from './components/StrangerDrinks/StrangerDrinks'
 
 import * as authService from './services/authService'
-import StrangerDrinks from './components/StrangerDrinks/StrangerDrinks'
 import * as drinkService from './services/drinkService'
+import AddIngredient from './pages/AddIngredient/AddIngredient'
+import DrinksPage from './pages/DrinksPage/DrinksPage'
 import * as ingredientService from './services/ingredientService'
+import EditDrink from './pages/EditDrink/EditDrink'
+import AddReview from './components/ReviewComponents/AddReview'
+import * as reviewService from './services/reviewService'
+
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [drinks, setDrinks] = useState([])
   const [ingredients, setIngredients] = useState([])
+  const [reviews, setReviews] = useState([])
+  
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -45,12 +51,18 @@ const App = () => {
       newDrink.photo = await drinkPhotoHelper(photo, newDrink._id)
     }
     setDrinks([...drinks, newDrink])
-    navigate('/') // FIXME Where would we like the user to go after creating a drink
+    navigate('/drinks') // FIXME Where would we like the user to go after creating a drink
   }
   
   const handleAddIngredient = async (newIngredientData) => {
     const newIngredient = await ingredientService.create(newIngredientData)
     setIngredients([...ingredients, newIngredient])
+    navigate('/')
+  }
+  
+  const handleAddReview = async (newReviewData) => {
+    const newReview = await reviewService.create(newReviewData)
+    setReviews([...reviews, newReview])
     navigate('/')
   }
 
@@ -60,9 +72,28 @@ const App = () => {
     return await drinkService.addPhoto(photoData, id)
   }
 
+  const handleDeleteDrink = async id => {
+    const deletedDrink = await drinkService.deleteOne(id)
+    setDrinks(drinks.filter(drink => drink._id)!== deletedDrink._id)
+  }
+
+  const handleUpdateDrink = async (updatedDrinkData, photo) => {
+    const updatedDrink = await drinkService.update(updatedDrinkData)
+		// If there is a photo...
+    if (photo) {
+      updatedDrink.photo = await drinkPhotoHelper(photo, updatedDrink._id)
+    }
+    const newDrinkArray = drinks.map(drink => 
+      drink._id === updatedDrink._id ? updatedDrink : drink
+    )
+    setDrinks(newDrinkArray)
+		navigate('/drinks')
+  }
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
+      <StrangerDrinks />
       <Routes>
         <Route
           path="/signup"
@@ -96,7 +127,26 @@ const App = () => {
         />
         <Route
           path="/add"
-          element={user ? <CreateDrink handleAddDrink={handleAddDrink} /> : <Navigate to="/login" />}
+          element={user ? <CreateDrink handleAddDrink={handleAddDrink} ingredients={ingredients}/> : <Navigate to="/login" />}
+        />
+        <Route
+          path='/edit'
+          element={<EditDrink handleUpdateDrink={handleUpdateDrink} />}        
+        
+        />
+        <Route
+          path='/add-review'
+          element={<AddReview handleAddReview={handleAddReview} />}        
+        />
+
+        <Route 
+          path="/drinks" 
+          element={
+          <DrinksPage 
+            drinks={drinks} 
+            user={user}
+            handleDeleteDrink={handleDeleteDrink} 
+          />}
         />
       </Routes>
     </>
