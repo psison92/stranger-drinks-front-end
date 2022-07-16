@@ -13,6 +13,7 @@ import * as drinkService from './services/drinkService'
 import AddIngredient from './pages/AddIngredient/AddIngredient'
 import DrinksPage from './pages/DrinksPage/DrinksPage'
 import * as ingredientService from './services/ingredientService'
+import EditDrink from './pages/EditDrink/EditDrink'
 
 
 const App = () => {
@@ -65,6 +66,19 @@ const App = () => {
     setDrinks(drinks.filter(drink => drink._id)!== deletedDrink._id)
   }
 
+  const handleUpdateDrink = async (updatedDrinkData, photo) => {
+    const updatedDrink = await drinkService.update(updatedDrinkData)
+		// If there is a photo...
+    if (photo) {
+      updatedDrink.photo = await drinkPhotoHelper(photo, updatedDrink._id)
+    }
+    const newDrinkArray = drinks.map(drink => 
+      drink._id === updatedDrink._id ? updatedDrink : drink
+    )
+    setDrinks(newDrinkArray)
+		navigate('/')
+  }
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
@@ -100,6 +114,12 @@ const App = () => {
           path="/add"
           element={user ? <CreateDrink handleAddDrink={handleAddDrink} ingredients={ingredients}/> : <Navigate to="/login" />}
         />
+        <Route
+          path='/edit'
+          element={<EditDrink handleUpdateDrink={handleUpdateDrink} />}        
+        
+        />
+
         <Route 
           path="/" 
           element={
