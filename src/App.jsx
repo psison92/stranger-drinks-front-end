@@ -8,7 +8,7 @@ import ProfileView from './pages/ProfileView/ProfileView'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CreateDrink from './pages/CreateDrink/CreateDrink'
 import StrangerDrinks from './components/StrangerDrinks/StrangerDrinks'
-
+import ShowPage from './pages/ShowPage/ShowPage'
 import * as authService from './services/authService'
 import * as drinkService from './services/drinkService'
 import AddIngredient from './pages/AddIngredient/AddIngredient'
@@ -175,6 +175,10 @@ const App = () => {
             user={user}
             handleDeleteDrink={handleDeleteDrink} 
           />}
+        />
+        <Route 
+          path='/drinks/:id'
+          element={<ShowPage drinks={drinks} />}
         />
       </Routes>
     </>
