@@ -92,8 +92,23 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
-      <StrangerDrinks />
       <Routes>
+        <Route 
+          path="/"
+          element={
+            <StrangerDrinks 
+            styleDiv={{
+              'text-align': 'center',
+            }}
+            styleImg={{
+              'margin-top': '2rem',
+              width: '90vw', 
+              'max-width': '1200px',
+              margin: '1rem auto', 
+            }}
+          />
+          }
+        />
         <Route
           path="/signup"
           element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
