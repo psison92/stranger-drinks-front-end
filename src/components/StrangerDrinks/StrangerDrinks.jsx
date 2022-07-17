@@ -1,12 +1,14 @@
 import './StrangerDrinks.css'
 
-const StrangerDrinks = ({style}) => {
+const StrangerDrinks = ({styleDiv, styleImg}) => {
   return (
-    <img 
-      src="/images/StrangerDrinksFull.png" 
-      alt="Stranger Drinks Logo" 
-      style={style}
-    />
+    <div style={styleDiv}>
+      <img 
+        src="/images/StrangerDrinksFull.png" 
+        alt="Stranger Drinks Logo" 
+        style={styleImg}
+      />
+    </div>
   )
 }
 
