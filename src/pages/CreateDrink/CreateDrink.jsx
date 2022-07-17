@@ -9,22 +9,26 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
-const ingredients = [
-  { _id: '62d1a60d051fdbfcd0eddcaa', label: 'Rum'},
-];
-
-const CreateDrink = props => {
+const CreateDrink = (props) => {
   const formElement = useRef()
 	const [validForm, setValidForm] = useState(false)
 
 	const [recipeData, setRecipeData] = useState([])
 
 	const [singleIngredient, setSingleIngredient] = useState({
-		name: '',
 		quantity: 0.0,
 		unit: '',
-		ingredient: '62d1a60d051fdbfcd0eddcaa' // FIXME Hardcoded for testing
+		ingredient: {}
 	})
+
+
+	// RegEx Example from
+	// https://www.freecodecamp.org/news/how-to-capitalize-words-in-javascript/
+	const ingredientOptions = props.ingredients.map(ingredient => ({
+		id: ingredient._id,
+		label: ingredient.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
+	}))
+	console.log(ingredientOptions)
 
 	const handleChangeIngredient = evt => {
 		setSingleIngredient({ ...singleIngredient, [evt.target.name]: evt.target.value })
@@ -57,14 +61,13 @@ const CreateDrink = props => {
 		setRecipeData([...recipeData, singleIngredient])
 	 // Reset the ingredients form
 		setSingleIngredient({
-			name: '',
 			quantity: 0.0,
 			unit: '',
 			ingredient: {}
 		})
 	}
 
-	console.log(recipeData)
+
 
   useEffect(() => {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
@@ -123,10 +126,13 @@ const CreateDrink = props => {
 						disablePortal
 						id="ingredient-combo-box"
 						name="ingredient"
-						options={ingredients}
+						options={props.ingredients}
 						sx={{ width: 300 }}
 						renderInput={(params) => <TextField {...params} label="Ingredients" />}
-						// onChange={handleChangeIngredient}
+						getOptionLabel={(option) => 
+							 option.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
+						}
+						//onChange={setSingleIngredient(this.inputValue)}
 					/>
 					<TextField 
 						id="ingredient-quantity" 
@@ -157,6 +163,23 @@ const CreateDrink = props => {
 					</Fab>
 				</div>
 			</form>
+			<div>
+				{recipeData.length > 0 ?
+				<>
+					<h3>Ingredients: </h3>
+					{recipeData.map( measurement =>
+						<>
+						{console.log(measurement)}
+						<div>Name: { measurement.ingredient.name }</div>
+						<div>{measurement.quantity} {measurement.unit}</div>
+						
+						</>
+					)}
+				</>
+				:
+				<>No ingredients yet</>
+				}
+			</div>
 		</div>
   )
 }
