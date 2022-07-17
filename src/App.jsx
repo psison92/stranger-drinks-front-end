@@ -4,6 +4,7 @@ import NavBar from './components/NavBar/NavBar'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profiles from './pages/Profiles/Profiles'
+import ProfileView from './pages/ProfileView/ProfileView'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CreateDrink from './pages/CreateDrink/CreateDrink'
 import StrangerDrinks from './components/StrangerDrinks/StrangerDrinks'
@@ -16,6 +17,7 @@ import * as ingredientService from './services/ingredientService'
 import EditDrink from './pages/EditDrink/EditDrink'
 import AddReview from './components/ReviewComponents/AddReview'
 import * as reviewService from './services/reviewService'
+import ReviewsPage from './components/ReviewComponents/ReviewsPage'
 
 
 const App = () => {
@@ -32,6 +34,14 @@ const App = () => {
       setDrinks(drinkData)
     }
     fetchAllDrinks()
+  }, [])
+  
+  useEffect(() => {
+    const fetchAllReviews = async () => {
+      const reviewData = await reviewService.getAll()
+      setReviews(reviewData)
+    }
+    fetchAllReviews()
   }, [])
 
   const handleLogout = () => {
@@ -92,8 +102,23 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
-      <StrangerDrinks />
       <Routes>
+        <Route 
+          path="/"
+          element={
+            <StrangerDrinks 
+            styleDiv={{
+              'text-align': 'center',
+            }}
+            styleImg={{
+              'margin-top': '2rem',
+              width: '90vw', 
+              'max-width': '1200px',
+              margin: '1rem auto', 
+            }}
+          />
+          }
+        />
         <Route
           path="/signup"
           element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
@@ -105,6 +130,10 @@ const App = () => {
         <Route
           path="/profiles"
           element={user ? <Profiles /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/profile-view"
+          element={<ProfileView  />}
         />
         <Route
           path="/add-ingredient"
@@ -132,6 +161,10 @@ const App = () => {
         <Route
           path='/add-review'
           element={<AddReview handleAddReview={handleAddReview} />}        
+        />
+        <Route
+          path='/reviews'
+          element={<ReviewsPage reviews={reviews} />}        
         />
 
         <Route 
