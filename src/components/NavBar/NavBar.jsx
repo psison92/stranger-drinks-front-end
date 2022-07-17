@@ -12,15 +12,15 @@ const NavBar = ({ user, handleLogout }) => {
       {location.pathname !== '/'
       ?
         <StrangerDrinks 
-          styleDiv={{
-            'text-align': 'center',
+          styleDiSv={{
+            textAlign: 'center',
           }}
           styleImg={{
-            'margin-top': '2rem',
-            'minHeight': '5rem',
-            'maxHeight': '10rem',
+            marginTop: '2rem',
+            minHeight: '5rem',
+            maxHeight: '10rem',
             height: '15vh', 
-            'max-width': '1200px',
+            maxWidth: '1200px',
             margin: '1rem auto', 
           }} 
         />
