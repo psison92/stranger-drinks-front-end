@@ -9,7 +9,6 @@ const ReviewsPage = (props) => {
         <ReviewCard 
         key={review.id}
         review={review}
-        user={props.user}
         />
         )}
       </div>
