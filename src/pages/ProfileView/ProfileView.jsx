@@ -12,10 +12,10 @@ const ProfileView = () => {
       setProfileDetails(profileData)
     } 
     fetchProfileDetails()
-  }, [location.state.profile.url])
+  }, [location.state.profile])
   return (
     <>
-      <h1>Hey Look Its {profileDetails.name}</h1>
+      <h1>Hey Look Its {location.state.profile.name}</h1>
     </>
   )
 }

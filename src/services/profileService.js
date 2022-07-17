@@ -9,9 +9,9 @@ async function getAllProfiles() {
   return await res.json()
 }
 
-async function getProfile(profile) {
-  const res = await fetch(`${BASE_URL}/${profile._id}`, {
-    headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
+async function getProfile(profileId) {
+  const res = await fetch(`${BASE_URL}/${profileId}`, {
+    headers: { Authorization: `Bearer ${tokenService.getToken()}` },
   })
   return await res.json()
 }
