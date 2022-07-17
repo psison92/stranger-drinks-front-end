@@ -92,7 +92,6 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
-
       <Routes>
         <Route 
           path="/"
