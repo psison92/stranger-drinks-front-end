@@ -23,7 +23,7 @@ const CreateDrink = props => {
 		name: '',
 		quantity: 0.0,
 		unit: '',
-		ingredient: '62d1a60d051fdbfcd0eddcaa'
+		ingredient: '62d1a60d051fdbfcd0eddcaa' // FIXME Hardcoded for testing
 	})
 
 	const handleChangeIngredient = evt => {
