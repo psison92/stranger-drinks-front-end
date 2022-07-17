@@ -44,6 +44,14 @@ const App = () => {
     fetchAllReviews()
   }, [])
 
+  useEffect(() => {
+    const fetchAllIngredients = async () => {
+      const ingredientData = await ingredientService.getAll()
+      setIngredients(ingredientData)
+    }
+    fetchAllIngredients()
+  }, [])
+
   const handleLogout = () => {
     authService.logout()
     setUser(null)
