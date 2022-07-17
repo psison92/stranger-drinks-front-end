@@ -12,7 +12,7 @@ const NavBar = ({ user, handleLogout }) => {
       {location.pathname !== '/'
       ?
         <StrangerDrinks 
-          styleDiSv={{
+          styleDiv={{
             textAlign: 'center',
           }}
           styleImg={{
