@@ -92,7 +92,12 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
-      <StrangerDrinks />
+      <StrangerDrinks 
+        style={{
+          width: '25vw', 
+          margin: '1rem auto', 
+          'text-align': 'center',
+      }} />
       <Routes>
         <Route
           path="/signup"
