@@ -22,9 +22,9 @@ const CreateDrink = (props) => {
 		name: '',
 		alternateName: '',
 		recipe: [{
-			unit: 0.0,
-			quantity: '',
-			ingredient: ''
+			unit: '',
+			quantity: 0.0,
+			ingredient: null
 		}],
 		photo: ''
 	})
@@ -57,13 +57,19 @@ const CreateDrink = (props) => {
 
 	const handleChangeIngredient = (evt, idx, value=evt.target.value) => {
 		const newFormData = { ...formData }
-		newFormData.recipe[idx][evt.target.name] = value
+		if (evt.target.name) {
+			newFormData.recipe[idx][evt.target.name] = value
+		} else {
+			newFormData.recipe[idx].ingredient = value
+		}
 		setFormData({...newFormData })
 		console.log(newFormData)
 	}
 
   const handleSubmit = evt => {
 		evt.preventDefault()
+		formData.recipe.forEach(e => e.ingredient = e.ingredient._id)
+		console.log(formData)
     props.handleAddDrink({...formData}, photoData.photo)
 	}
 
@@ -71,9 +77,9 @@ const CreateDrink = (props) => {
 		const newFormData = { ...formData }
 
 		const newRecipeData = {
-			unit: 0.0,
-			quantity: '',
-			ingredient: ''
+			unit: '',
+			quantity: 0.0,
+			ingredient: null
 		}
 
 		newFormData.recipe.unshift(newRecipeData)
@@ -99,7 +105,7 @@ const CreateDrink = (props) => {
 	// RegEx Example from
 	// https://www.freecodecamp.org/news/how-to-capitalize-words-in-javascript/
 	const handleCapitalize = str => {
-		return str.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
+		return str?.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
 	}
 
   useEffect(() => {
@@ -150,6 +156,8 @@ const CreateDrink = (props) => {
 									
 									options={props.ingredients}
 									sx={{ width: 300 }}
+									value={item.ingredient}
+									inputValue={handleCapitalize(item.ingredient?.name)}
 									getOptionLabel={(option) => 
 										handleCapitalize(option.name)
 									}
@@ -184,12 +192,13 @@ const CreateDrink = (props) => {
 										handleChangeIngredient(evt, idx)
 									})}								
 								/>
+								{/* conditional render for index 0 */}
 								<Fab 
 									variant="extended" 
 									color="primary" 
 									aria-label="add"
 									// disabled={!validIngredient}
-									onClick={ handleAddIngredient() }
+									onClick={handleAddIngredient}
 								>
 
 									<AddIcon sx={{ mr: 0.75 }} />
