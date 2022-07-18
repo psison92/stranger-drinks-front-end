@@ -1,8 +1,11 @@
+
+import { useRadioGroup } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+
 import { getProfile } from '../../services/profileService'
 
-const ProfileView = () => {
+const ProfileView = (props) => {
   const [profileDetails, setProfileDetails] = useState({})
   const location = useLocation()
   
@@ -12,10 +15,27 @@ const ProfileView = () => {
       setProfileDetails(profileData)
     } 
     fetchProfileDetails()
-  }, [location.state.profile])
+  }, [location.state.profile.url])
   return (
     <>
-      <h1>Hey Look Its {location.state.profile.name}</h1>
+      <main>
+        {/* cant find a default picture yet but will be adding one once one is found */}
+        {/* <img 
+          src={
+            location.state.profile.photo
+            ?location.state.profile.photo
+            :
+          } 
+          alt="" 
+          srcset="" /> */}
+        <h1>Hey Look Its {location.state.profile.name}</h1>
+        <h2>Hangover Tip: {location.state.profile.hangoverTip}</h2>
+        {props.user?.profile === location.state.profile?._id &&
+          <button>Add a new tip?</button>
+        }
+        <h2>Favorite Drinks:{location.state.profile.favoriteDrinks}</h2>
+        <h2>Personal Creations:{location.state.profile.drinkList}</h2>
+      </main>
     </>
   )
 }

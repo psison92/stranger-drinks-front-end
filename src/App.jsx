@@ -109,7 +109,7 @@ const App = () => {
         />
         <Route
           path="/profile-view"
-          element={<ProfileView  />}
+          element={<ProfileView user={user} />}
         />
         <Route
           path="/add-ingredient"
