@@ -19,6 +19,7 @@ import AddReview from './components/ReviewComponents/AddReview'
 import * as reviewService from './services/reviewService'
 import ReviewsPage from './components/ReviewComponents/ReviewsPage'
 import HangoverTip from './pages/ProfileHangoverTip/HangoverTipForm'
+import * as profileService from './services/profileService'
 
 
 const App = () => {
@@ -112,6 +113,10 @@ const App = () => {
     setDrinks(newDrinkArray)
 		navigate('/drinks')
   }
+  const handleUpdateProfile = async (updatedProfileData) => {
+    const updatedProfile = await profileService.update(updatedProfile)
+
+  }
 
   return (
     <>
@@ -147,11 +152,11 @@ const App = () => {
         />
         <Route
           path="/profile-view"
-          element={<ProfileView user={user} />}
+          element={<ProfileView user={user}/>}
         />
         <Route
           path="/hangover-tip"
-          element={<HangoverTip user={user} />}
+          element={<HangoverTip user={user}/>}
         >
         </Route>
         <Route

@@ -34,6 +34,7 @@ const ProfileView = (props) => {
         <h2>Hangover Tip: {location.state.profile.hangoverTip}</h2>
         :
         <h2>No Hangover Tips yet</h2>
+        
         }
         </div>
         {props.user?.profile === location.state.profile?._id &&
