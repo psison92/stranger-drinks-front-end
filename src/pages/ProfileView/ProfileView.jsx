@@ -29,7 +29,13 @@ const ProfileView = (props) => {
           alt="" 
           srcset="" /> */}
         <h1>Hey Look Its {location.state.profile.name}</h1>
+        <div>
+        {location.state.profile.hangoverTip === ""?
         <h2>Hangover Tip: {location.state.profile.hangoverTip}</h2>
+        :
+        <h2>No Hangover Tips yet</h2>
+        }
+        </div>
         {props.user?.profile === location.state.profile?._id &&
           <button>Add a new tip?</button>
         }
