@@ -145,7 +145,7 @@ const CreateDrink = (props) => {
 						options={props.ingredients}
 						sx={{ width: 300 }}
 						getOptionLabel={(option) => 
-							option.name
+							handleCapitalize(option.name)
 						}
 						onChange={(event, newValue) => {
 							console.log(newValue)
@@ -188,7 +188,7 @@ const CreateDrink = (props) => {
 					<h3>Ingredients: </h3>
 					{recipeData.map( ( measurement, idx ) =>
 						<div key={`measurement-${idx}`}>
-							<div>Name: { measurement.ingredient.name }</div>
+							<div>Name: { handleCapitalize(measurement.ingredient.name) }</div>
 							<div>{measurement.quantity} {measurement.unit}</div>
 							
 						</div>
