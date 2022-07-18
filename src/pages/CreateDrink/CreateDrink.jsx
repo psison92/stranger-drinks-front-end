@@ -13,7 +13,7 @@ const CreateDrink = (props) => {
   const formElement = useRef()
 	const [validForm, setValidForm] = useState(false)
 	const [recipeData, setRecipeData] = useState([])
-	const [ingredientId, setIngredientID] = useState()
+	const [ingredientId, setIngredientID] = useState() // FIXME Would rather not use
 
 	const [singleIngredient, setSingleIngredient] = useState({
 		quantity: 0.0,
@@ -31,6 +31,15 @@ const CreateDrink = (props) => {
 
 	const handleChangeIngredient = evt => {
 		setSingleIngredient({ ...singleIngredient, [evt.target.name]: evt.target.value })
+	}
+
+	const handleSingleIngredient = (evt, value) => {
+		setSingleIngredient({ ...singleIngredient, 
+			ingredient: {
+				_id: value._id,
+				name: value.name
+			}
+		 })
 	}
 
   const [formData, setFormData] = useState({
@@ -55,15 +64,21 @@ const CreateDrink = (props) => {
 		setPhotoData({ photo: evt.target.files[0]}) // type file in form returns in array. we only need first index
 	}
 
+
+
 	const handleAddIngredient = evt => {
 		evt.preventDefault()
 		setRecipeData([...recipeData, singleIngredient])
-	 // Reset the ingredients form
-		setSingleIngredient({
-			quantity: 0.0,
-			unit: '',
-			ingredient: {}
-		})
+	 // Reset the ingredients form - this was not updating on the form
+		// setSingleIngredient({
+		// 	quantity: 0.0,
+		// 	unit: '',
+		// 	ingredient: {}
+		// })
+	}
+
+	const handleCapitalize = str => {
+		return str.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
 	}
 
 
@@ -71,6 +86,8 @@ const CreateDrink = (props) => {
   useEffect(() => {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
 	}, [formData])
+
+	console.log(recipeData)
 
   return (
     <div className={styles.container}>
@@ -128,12 +145,11 @@ const CreateDrink = (props) => {
 						options={props.ingredients}
 						sx={{ width: 300 }}
 						getOptionLabel={(option) => 
-							option.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
+							option.name
 						}
 						onChange={(event, newValue) => {
 							console.log(newValue)
-							setSingleIngredient(newValue)
-							setIngredientID(singleIngredient._id)
+							handleSingleIngredient(event, newValue)
 						}}
 						renderInput={(params) => <TextField {...params} label="Ingredients" />}
 					/>
@@ -171,9 +187,8 @@ const CreateDrink = (props) => {
 				<>
 					<h3>Ingredients: </h3>
 					{recipeData.map( ( measurement, idx ) =>
-						// Need to Add a Key
 						<div key={`measurement-${idx}`}>
-							<div>Name: { measurement.ingredient?.name }</div>
+							<div>Name: { measurement.ingredient.name }</div>
 							<div>{measurement.quantity} {measurement.unit}</div>
 							
 						</div>
