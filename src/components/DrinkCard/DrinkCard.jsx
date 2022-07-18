@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 
+
 const DrinkCard = ({drink, user, handleDeleteDrink}) => {
   return (
     <>
@@ -23,13 +24,14 @@ const DrinkCard = ({drink, user, handleDeleteDrink}) => {
           >
             Delete
           </button>
+        </div>
+      }
           <Link
             to={`/drinks/${drink._id}`}
             className='btn btn-sm btn-info'
+            state={{drink}}      
             > Details
           </Link>
-        </div>
-      }
     </div>
     </>
   )
