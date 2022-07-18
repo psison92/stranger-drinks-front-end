@@ -4,7 +4,6 @@ import StrangerDrinks from '../StrangerDrinks/StrangerDrinks'
 
 const NavBar = ({ user, handleLogout }) => {
   const location = useLocation();
-  console.log(typeof location.pathname)
 
   return (
     <>

@@ -8,7 +8,7 @@ import ProfileView from './pages/ProfileView/ProfileView'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CreateDrink from './pages/CreateDrink/CreateDrink'
 import StrangerDrinks from './components/StrangerDrinks/StrangerDrinks'
-
+import ShowPage from './pages/ShowPage/ShowPage'
 import * as authService from './services/authService'
 import * as drinkService from './services/drinkService'
 import AddIngredient from './pages/AddIngredient/AddIngredient'
@@ -83,6 +83,11 @@ const App = () => {
     navigate('/')
   }
 
+  const handleDeleteReview = async id => {
+    const deletedReview = await reviewService.deleteOne(id)
+    setReviews(reviews.filter(review => review._id !== deletedReview._id))
+  }
+
   const drinkPhotoHelper = async (photo, id) => {
     const photoData = new FormData()
     photoData.append('photo', photo) // allows for sending files
@@ -91,7 +96,7 @@ const App = () => {
 
   const handleDeleteDrink = async id => {
     const deletedDrink = await drinkService.deleteOne(id)
-    setDrinks(drinks.filter(drink => drink._id)!== deletedDrink._id)
+    setDrinks(drinks.filter(drink => drink._id!== deletedDrink._id))
   }
 
   const handleUpdateDrink = async (updatedDrinkData, photo) => {
@@ -116,7 +121,7 @@ const App = () => {
           element={
             <StrangerDrinks 
             styleDiv={{
-              'text-align': 'center',
+              textAlign: 'center',
             }}
             styleImg={{
               marginTop: '2rem',
@@ -168,11 +173,17 @@ const App = () => {
         />
         <Route
           path='/add-review'
-          element={<AddReview handleAddReview={handleAddReview} />}        
+          element={user ? <AddReview handleAddReview={handleAddReview} /> : <Navigate to="/login" />}        
         />
         <Route
           path='/reviews'
-          element={<ReviewsPage reviews={reviews} />}        
+          element={
+            <ReviewsPage 
+              reviews={reviews} 
+              user={user}
+              handleDeleteReview={handleDeleteReview}
+            />
+          }        
         />
 
         <Route 
@@ -183,6 +194,10 @@ const App = () => {
             user={user}
             handleDeleteDrink={handleDeleteDrink} 
           />}
+        />
+        <Route 
+          path='/drinks/:id'
+          element={<ShowPage drinks={drinks} />}
         />
       </Routes>
     </>

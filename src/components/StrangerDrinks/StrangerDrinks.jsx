@@ -1,5 +1,3 @@
-import './StrangerDrinks.css'
-
 const StrangerDrinks = ({styleDiv, styleImg}) => {
   return (
     <div style={styleDiv}>

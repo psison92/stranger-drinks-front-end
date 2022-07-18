@@ -12,8 +12,8 @@ import AddIcon from '@mui/icons-material/Add';
 const CreateDrink = (props) => {
   const formElement = useRef()
 	const [validForm, setValidForm] = useState(false)
-
 	const [recipeData, setRecipeData] = useState([])
+	const [ingredientId, setIngredientID] = useState()
 
 	const [singleIngredient, setSingleIngredient] = useState({
 		quantity: 0.0,
@@ -127,11 +127,15 @@ const CreateDrink = (props) => {
 						name="ingredient"
 						options={props.ingredients}
 						sx={{ width: 300 }}
-						renderInput={(params) => <TextField {...params} label="Ingredients" />}
 						getOptionLabel={(option) => 
-							 option.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
+							option.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
 						}
-						//onChange={setSingleIngredient(this.inputValue)}
+						onChange={(event, newValue) => {
+							console.log(newValue)
+							setSingleIngredient(newValue)
+							setIngredientID(singleIngredient._id)
+						}}
+						renderInput={(params) => <TextField {...params} label="Ingredients" />}
 					/>
 					<TextField 
 						id="ingredient-quantity" 
@@ -167,8 +171,7 @@ const CreateDrink = (props) => {
 				<>
 					<h3>Ingredients: </h3>
 					{recipeData.map( ( measurement, idx ) =>
-						// Need to Add a Key
-						<div>
+						<div key={`measurement-${idx}`}>
 							<div>Name: { measurement.ingredient?.name }</div>
 							<div>{measurement.quantity} {measurement.unit}</div>
 							
