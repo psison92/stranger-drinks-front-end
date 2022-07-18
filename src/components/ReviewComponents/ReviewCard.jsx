@@ -12,13 +12,13 @@ const ReviewCard = ({review, user, handleDeleteReview,}) => {
       </div>
       {user?.profile === review.author?._id &&
         <div className="card-footer">
-          {/* <Link
+          <Link
             to="/edit-review"
             className='btn btn-sm btn-warning'
             state={{review}}
           >
             Edit
-          </Link> */}
+          </Link>
           <button 
             className="btn btn-sm btn-danger m-left"
             onClick={() => handleDeleteReview(review._id)}

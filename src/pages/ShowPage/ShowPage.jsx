@@ -18,7 +18,7 @@ const ShowPage = () => {
       <>
       {drinkData.reviews.map(review =>
       <>
-        <p>{review}</p>
+        <p key={review._id}>{review}</p>
       </>
 
       )}

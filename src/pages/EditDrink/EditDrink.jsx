@@ -3,25 +3,23 @@ import { Link, useLocation } from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import styles from './EditDrink.module.css'
-import Autocomplete from '@mui/material/Autocomplete';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+
 
 const EditDrink = (props) => {
   const location = useLocation()
   const formElement = useRef()
 	const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState(location.state.drink)
-  const [recipeData, setRecipeData] = useState([])
-  const [singleIngredient, setSingleIngredient] = useState({
-		quantity: 0.0,
-		unit: '',
-		ingredient: {}
-	})
+  const [recipeData, setRecipeData] = useState(location.state.drink.recipe)
+
 
   const handleChange = evt => {
 		setFormData({ ...formData, [evt.target.name]: evt.target.value })
 	}
+
+  const handleRecipeChange = evt => {
+    setRecipeData({...recipeData, [evt.target.name]: evt.targe.value})
+  }
 
   useEffect(() => {
     formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
@@ -31,33 +29,11 @@ const EditDrink = (props) => {
 		evt.preventDefault()
     props.handleUpdateDrink(formData)
 	}
-  const handleChangeIngredient = evt => {
-		setSingleIngredient({ ...singleIngredient, [evt.target.name]: evt.target.value })
-	}
-  const handleUpdateIngredient = evt => {
-		evt.preventDefault()
-		setRecipeData([...recipeData, singleIngredient])
-	 // Reset the ingredients form - this was not updating on the form
-		// setSingleIngredient({
-		// 	quantity: 0.0,
-		// 	unit: '',
-		// 	ingredient: {}
-		// })
-	}
-  const handleSingleIngredient = (evt, value) => {
-		setSingleIngredient({ ...singleIngredient, 
-			ingredient: {
-				_id: value._id,
-				name: value.name
-			}
-		})
-	}
-  const handleCapitalize = str => {
-		return str.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
-	}
 
-
-
+  const handleRecipeSubmit = evt => {
+    evt.preventDefault()
+    props.handleUpdateIngredient(recipeData)
+  }
 
   return (
     <>
@@ -79,7 +55,7 @@ const EditDrink = (props) => {
 						name="alternateName"
 						id="alternateName-input"
 						label="Alternate Name"
-						value={formData.alternateName}
+						value={formData.type}
 						onChange={handleChange}
 					/>
 				</div>
@@ -111,53 +87,49 @@ const EditDrink = (props) => {
 					</Link>
 				</div>
 			</form>
-    <form>
-				<div>
-					<Autocomplete
-						isOptionEqualToValue={(option, value) => option.id === value.id} // Fixes Warning
-						disablePortal
-						id="ingredient-combo-box"
+      <form autoComplete="off" ref={formElement} onSubmit={handleRecipeSubmit}>
+				<div className="form-group mb-3">
+					<label htmlFor="name-input" className="form-label">
+						Ingredient 
+					</label>
+					<input 
+						type="text"
+						className="form-control"
+						id="name-input"
 						name="ingredient"
-						options={props.ingredients}
-						sx={{ width: 300 }}
-						getOptionLabel={(option) => 
-							handleCapitalize(option.name)
-						}
-						onChange={(event, newValue) => {
-							console.log(newValue)
-							handleSingleIngredient(event, newValue)
-						}}
-						renderInput={(params) => <TextField {...params} label="Ingredients" />}
+            value={recipeData.ingredient}
+            onChange={handleRecipeChange}
+						required
 					/>
-					<TextField 
-						id="ingredient-quantity" 
-						type="number"
-						inputProps={{ min: "0", step: "0.25" }} 
-						name="quantity" 
-						label="Quantity" 
-						variant="outlined"
-						sx={{ width: 115 }}
-						onChange={handleChangeIngredient}
-					/>
-					<TextField 
-						id="ingredient-unit" 
-						name="unit" 
-						label="Unit of Measurement" 
-						variant="outlined"
-						sx={{ width: 200 }}
-						onChange={handleChangeIngredient}
-					/>
-					<Fab 
-						variant="extended" 
-						color="primary" 
-						aria-label="add"
-						onClick={handleUpdateIngredient}
-					>
-						<AddIcon sx={{ mr: 0.75 }} />
-						Edit Ingredient
-					</Fab>
 				</div>
-			</form>
+				<div className="form-group mb-3">
+					<label htmlFor="breed-input" className="form-label">
+						Quantity
+					</label>
+					<input 
+						type="text"
+						className="form-control"
+						id="breed-input"
+						name="breed"
+            value={recipeData.quantity}
+            onChange={handleRecipeChange}
+						required
+					/>
+				</div>
+				<div className="form-group mb-4">
+					<label htmlFor="age-input" className="form-label">
+						Unit of Measurement
+					</label>
+					<input 
+						type="number"
+						className="form-control"
+						id="unit-input"
+						name="unit"
+            value={recipeData.unit}
+            onChange={handleRecipeChange}
+					/>
+				</div>
+      </form>
 		</div>
   </>
   )
