@@ -1,13 +1,11 @@
 import { useState, useRef, useEffect } from "react"
+import { Link, useLocation } from "react-router-dom";
 
 const EditReview = (props) => {
+  const location = useLocation()
   const formElement = useRef()
-  const [validForm, setValidForm] = useState(false)
-  const [formData, setFormData] = useState({
-    title: '',
-    content: '',
-    rating: 0,
-  })
+	const [validForm, setValidForm] = useState(false)
+  const [formData, setFormData] = useState(location.state.review)
 
   const handleChange = evt => {
 		setFormData({ ...formData, [evt.target.name]: evt.target.value })
@@ -19,7 +17,7 @@ const EditReview = (props) => {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    props.handleEditReview(formData)
+    props.handleUpdateReview(formData)
   }
 
 	return (
@@ -77,7 +75,7 @@ const EditReview = (props) => {
 						className="btn btn-primary btn-fluid"
             disabled={!validForm}
 					>
-						Add Review
+						Edit Review
 					</button>
 				</div>
 			</form>
