@@ -4,7 +4,6 @@ import StrangerDrinks from '../StrangerDrinks/StrangerDrinks'
 
 const NavBar = ({ user, handleLogout }) => {
   const location = useLocation();
-  console.log(typeof location.pathname)
 
   return (
     <>
@@ -13,14 +12,14 @@ const NavBar = ({ user, handleLogout }) => {
       ?
         <StrangerDrinks 
           styleDiv={{
-            'text-align': 'center',
+            textAlign: 'center',
           }}
           styleImg={{
-            'margin-top': '2rem',
-            'minHeight': '5rem',
-            'maxHeight': '10rem',
+            marginTop: '2rem',
+            minHeight: '5rem',
+            maxHeight: '10rem',
             height: '15vh', 
-            'max-width': '1200px',
+            maxWidth: '1200px',
             margin: '1rem auto', 
           }} 
         />
