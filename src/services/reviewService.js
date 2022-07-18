@@ -28,8 +28,21 @@ async function deleteOne(id) {
   return res.json()
 }
 
+async function update(review) {
+  const res = await fetch(`${BASE_URL}/${review._id}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(review)
+  })
+  return res.json()
+}
+
 export {
   create,
   getAll,
   deleteOne,
+  update,
 }

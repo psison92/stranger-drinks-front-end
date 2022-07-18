@@ -8,26 +8,19 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
 
 const CreateDrink = (props) => {
   const formElement = useRef()
 	const [validForm, setValidForm] = useState(false)
 	const [recipeData, setRecipeData] = useState([])
-	const [ingredientId, setIngredientID] = useState() // FIXME Would rather not use
 
 	const [singleIngredient, setSingleIngredient] = useState({
 		quantity: 0.0,
 		unit: '',
 		ingredient: {}
 	})
-
-
-	// RegEx Example from
-	// https://www.freecodecamp.org/news/how-to-capitalize-words-in-javascript/
-	const ingredientOptions = props.ingredients.map(ingredient => ({
-		id: ingredient._id,
-		label: ingredient.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
-	}))
 
 	const handleChangeIngredient = evt => {
 		setSingleIngredient({ ...singleIngredient, [evt.target.name]: evt.target.value })
@@ -64,8 +57,6 @@ const CreateDrink = (props) => {
 		setPhotoData({ photo: evt.target.files[0]}) // type file in form returns in array. we only need first index
 	}
 
-
-
 	const handleAddIngredient = evt => {
 		evt.preventDefault()
 		setRecipeData([...recipeData, singleIngredient])
@@ -77,17 +68,23 @@ const CreateDrink = (props) => {
 		// })
 	}
 
+	const handleDeleteIngredient = (idx) => {
+		console.log(idx)
+		console.log(recipeData)
+		setRecipeData(recipeData.filter((ing, index) => index !== idx))
+		console.log("New", recipeData)
+
+	}
+
+	// RegEx Example from
+	// https://www.freecodecamp.org/news/how-to-capitalize-words-in-javascript/
 	const handleCapitalize = str => {
 		return str.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
 	}
 
-
-
   useEffect(() => {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
 	}, [formData])
-
-	console.log(recipeData)
 
   return (
     <div className={styles.container}>
@@ -137,6 +134,7 @@ const CreateDrink = (props) => {
 			</form>
 			<form>
 				<div>
+					
 					<Autocomplete
 						isOptionEqualToValue={(option, value) => option.id === value.id} // Fixes Warning
 						disablePortal
@@ -151,7 +149,7 @@ const CreateDrink = (props) => {
 							console.log(newValue)
 							handleSingleIngredient(event, newValue)
 						}}
-						renderInput={(params) => <TextField {...params} label="Ingredients" />}
+						renderInput={(params, idx) => <TextField {...params} label="Ingredients" />}
 					/>
 					<TextField 
 						id="ingredient-quantity" 
@@ -185,14 +183,52 @@ const CreateDrink = (props) => {
 			<div>
 				{recipeData.length > 0 ?
 				<>
-					<h3>Ingredients: </h3>
+					<h3>Current Ingredients: </h3>
+					<ul className={styles.recipeData}>
 					{recipeData.map( ( measurement, idx ) =>
-						<div key={`measurement-${idx}`}>
-							<div>Name: { handleCapitalize(measurement.ingredient.name) }</div>
-							<div>{measurement.quantity} {measurement.unit}</div>
-							
-						</div>
+						<>
+							<div className={styles.recipeDataBorderLeft}></div>
+							<li className={styles.recipeDataList} key={`measurement-${idx}`}>
+								<div className={styles.ingredientName}><span>Name:</span> { handleCapitalize(measurement.ingredient.name) }</div>
+								<TextField 
+									id={`ingredient-quantity-${idx}`}
+									key={`ingredient-quantity-${idx}`} // FIXME Might be overkill
+									type="number"
+									inputProps={{ min: "0", step: "0.25" }} 
+									name="quantity" 
+									label="Quantity" 
+									variant="outlined"
+									sx={{ width: 115 }}
+									value={measurement.quantity}
+									onChange={handleChangeIngredient}
+								/>
+								<TextField 
+									id={`ingredient-unit-${idx}`}
+									key={`ingredient-unit-${idx}`}
+									name="unit" 
+									label="Unit of Measurement" 
+									variant="outlined"
+									sx={{ width: 200 }}
+									value={measurement.unit}
+									onChange={handleChangeIngredient}
+								/>
+								<Fab 
+									variant="extended" 
+									color="primary" 
+									size="small"
+									aria-label="add"
+									onClick={() => handleDeleteIngredient(idx)}
+									>
+									<DeleteForeverIcon 
+										fontSize="small" 
+										sx={{ mr: 0.25 }}
+									/>
+								</Fab>
+								<hr className={styles.recipeDataLine}></hr>
+							</li>
+						</>
 					)}
+					</ul>
 				</>
 				:
 				<>No ingredients yet</>
