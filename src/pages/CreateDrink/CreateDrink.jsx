@@ -28,7 +28,6 @@ const CreateDrink = (props) => {
 		id: ingredient._id,
 		label: ingredient.name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
 	}))
-	console.log(ingredientOptions)
 
 	const handleChangeIngredient = evt => {
 		setSingleIngredient({ ...singleIngredient, [evt.target.name]: evt.target.value })
@@ -167,13 +166,13 @@ const CreateDrink = (props) => {
 				{recipeData.length > 0 ?
 				<>
 					<h3>Ingredients: </h3>
-					{recipeData.map( measurement =>
-						<>
-						{console.log(measurement)}
-						<div>Name: { measurement.ingredient.name }</div>
-						<div>{measurement.quantity} {measurement.unit}</div>
-						
-						</>
+					{recipeData.map( ( measurement, idx ) =>
+						// Need to Add a Key
+						<div>
+							<div>Name: { measurement.ingredient?.name }</div>
+							<div>{measurement.quantity} {measurement.unit}</div>
+							
+						</div>
 					)}
 				</>
 				:
