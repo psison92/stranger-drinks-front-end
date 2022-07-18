@@ -8,7 +8,7 @@ import ProfileView from './pages/ProfileView/ProfileView'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CreateDrink from './pages/CreateDrink/CreateDrink'
 import StrangerDrinks from './components/StrangerDrinks/StrangerDrinks'
-
+import ShowPage from './pages/ShowPage/ShowPage'
 import * as authService from './services/authService'
 import * as drinkService from './services/drinkService'
 import AddIngredient from './pages/AddIngredient/AddIngredient'
@@ -42,6 +42,14 @@ const App = () => {
       setReviews(reviewData)
     }
     fetchAllReviews()
+  }, [])
+
+  useEffect(() => {
+    const fetchAllIngredients = async () => {
+      const ingredientData = await ingredientService.getAll()
+      setIngredients(ingredientData)
+    }
+    fetchAllIngredients()
   }, [])
 
   const handleLogout = () => {
@@ -108,12 +116,12 @@ const App = () => {
           element={
             <StrangerDrinks 
             styleDiv={{
-              'text-align': 'center',
+              textAlign: 'center',
             }}
             styleImg={{
-              'margin-top': '2rem',
+              marginTop: '2rem',
               width: '90vw', 
-              'max-width': '1200px',
+              maxWidth: '1200px',
               margin: '1rem auto', 
             }}
           />
@@ -175,6 +183,10 @@ const App = () => {
             user={user}
             handleDeleteDrink={handleDeleteDrink} 
           />}
+        />
+        <Route 
+          path='/drinks/:id'
+          element={<ShowPage drinks={drinks} />}
         />
       </Routes>
     </>
