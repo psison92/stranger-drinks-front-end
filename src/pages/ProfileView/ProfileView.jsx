@@ -1,7 +1,7 @@
 
 import { useRadioGroup } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import { getProfile } from '../../services/profileService'
 
@@ -34,10 +34,13 @@ const ProfileView = (props) => {
         <h2>Hangover Tip: {location.state.profile.hangoverTip}</h2>
         :
         <h2>No Hangover Tips yet</h2>
+        
         }
         </div>
         {props.user?.profile === location.state.profile?._id &&
+        <Link to="/hangover-tip" >
           <button>Add a new tip?</button>
+        </Link>
         }
         <h2>Favorite Drinks:{location.state.profile.favoriteDrinks}</h2>
         <h2>Personal Creations:{location.state.profile.drinkList}</h2>
