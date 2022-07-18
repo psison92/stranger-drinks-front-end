@@ -1,11 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import ShowDrink from "../../components/ShowDrink/ShowDrink";
+
 
 const ShowPage = () => {
   const location = useLocation()
-  console.log(location)
   const [drinkData] = useState(location.state.drink)
-  console.log(drinkData)
 
 
   return (
@@ -33,7 +33,7 @@ const ShowPage = () => {
       <>
       {drinkData.recipe.map(rec =>
       <>
-        <h5>{rec.ingredient}</h5>
+        <h5>{rec.ingredient.name}</h5>
         <h5>{rec.quantity}</h5>
         <h5>{rec.unit}</h5>
       </>

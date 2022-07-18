@@ -44,6 +44,14 @@ const App = () => {
     fetchAllReviews()
   }, [])
 
+  useEffect(() => {
+    const fetchAllIngredients = async () => {
+      const ingredientData = await ingredientService.getAll()
+      setIngredients(ingredientData)
+    }
+    fetchAllIngredients()
+  }, [])
+
   const handleLogout = () => {
     authService.logout()
     setUser(null)
@@ -113,12 +121,12 @@ const App = () => {
           element={
             <StrangerDrinks 
             styleDiv={{
-              'text-align': 'center',
+              textAlign: 'center',
             }}
             styleImg={{
-              'margin-top': '2rem',
+              marginTop: '2rem',
               width: '90vw', 
-              'max-width': '1200px',
+              maxWidth: '1200px',
               margin: '1rem auto', 
             }}
           />
