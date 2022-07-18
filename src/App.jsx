@@ -122,6 +122,19 @@ const App = () => {
 		navigate('/drinks')
   }
 
+  const handleUpdateIngredient = async (updatedIngredientData, photo) => {
+    const updatedIngredient = await drinkService.update(updatedIngredientData)
+		// If there is a photo...
+    if (photo) {
+      updatedIngredient.photo = await drinkPhotoHelper(photo, updatedIngredient._id)
+    }
+    const newIngredientArray = ingredients.map(ingredient => 
+      ingredient._id === updatedIngredient._id ? updatedIngredient : ingredient
+    )
+    setDrinks(newIngredientArray)
+		navigate('/drinks')
+  }
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
@@ -178,7 +191,7 @@ const App = () => {
         />
         <Route
           path='/edit'
-          element={<EditDrink handleUpdateDrink={handleUpdateDrink} />}        
+          element={<EditDrink ingredients={ingredients} handleUpdateDrink={handleUpdateDrink} handleUpdateIngredient={handleUpdateIngredient} />}        
         
         />
         <Route
