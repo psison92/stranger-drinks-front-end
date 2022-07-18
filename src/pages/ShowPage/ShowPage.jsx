@@ -33,9 +33,7 @@ const ShowPage = () => {
       <>
       {drinkData.recipe.map(rec =>
       <>
-        <h5>{rec.ingredient.name}</h5>
-        <h5>{rec.quantity}</h5>
-        <h5>{rec.unit}</h5>
+      <ShowDrink key={rec._id} rec={rec}/>
       </>
       )}
       </>
