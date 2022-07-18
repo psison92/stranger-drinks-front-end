@@ -1,10 +1,32 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import StrangerDrinks from '../StrangerDrinks/StrangerDrinks'
 
 
 const NavBar = ({ user, handleLogout }) => {
+  const location = useLocation();
+
   return (
     <>
     <header className='App-header'>
+      {location.pathname !== '/'
+      ?
+        <StrangerDrinks 
+          styleDiv={{
+            textAlign: 'center',
+          }}
+          styleImg={{
+            marginTop: '2rem',
+            minHeight: '5rem',
+            maxHeight: '10rem',
+            height: '15vh', 
+            maxWidth: '1200px',
+            margin: '1rem auto', 
+          }} 
+        />
+      :
+        <>
+        </>
+      }
       {user ?
         <nav>
             <Link to='/add'>Mix your Drink</Link>

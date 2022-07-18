@@ -1,4 +1,10 @@
 import { useState, useRef, useEffect } from "react"
+import styles from './AddIngredient.module.css'
+
+// import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const AddIngredient = (props) => {
   const formElement = useRef()
@@ -25,7 +31,7 @@ const AddIngredient = (props) => {
   }
 
 	return (
-		<>
+		<div className={styles.container}>
 			<h1>Add Ingredient</h1>
 			<form autoComplete="off" ref={formElement} onSubmit={handleSubmit}>
 				<div className="form-group mb-3">
@@ -58,33 +64,6 @@ const AddIngredient = (props) => {
 				</div>
 				<div className="form-group mb-4">
 					<label htmlFor="age-input" className="form-label">
-						Quantity:
-					</label>
-					<input 
-						type="number"
-						className="form-control"
-						id="quantity-input"
-						name="quantity"
-            value={formData.quantity}
-            onChange={handleChange}
-					/>
-				</div>
-				<div className="form-group mb-3">
-					<label htmlFor="type-input" className="form-label">
-						Type of Measurement (required)
-					</label>
-					<input 
-						type="text"
-						className="form-control"
-						id="typeOfMeasurement-input"
-						name="typeOfMeasurement"
-            value={formData.typeOfMeasurement}
-            onChange={handleChange}
-						required
-					/>
-				</div>
-				<div className="form-group mb-4">
-					<label htmlFor="age-input" className="form-label">
 						ABV(%):
 					</label>
 					<input 
@@ -106,7 +85,7 @@ const AddIngredient = (props) => {
 					</button>
 				</div>
 			</form>
-		</>
+		</div>
 	)
 }
 
