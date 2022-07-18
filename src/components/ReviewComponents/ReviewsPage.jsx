@@ -7,8 +7,10 @@ const ReviewsPage = (props) => {
     <div className='drink-header'>
         {props.reviews.map(review =>
         <ReviewCard 
-        key={review.id}
-        review={review}
+          key={review._id}
+          review={review}
+          user={props.user}
+          handleDeleteReview={props.handleDeleteReview}
         />
         )}
       </div>
