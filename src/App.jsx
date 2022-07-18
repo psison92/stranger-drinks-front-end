@@ -18,6 +18,7 @@ import EditDrink from './pages/EditDrink/EditDrink'
 import AddReview from './components/ReviewComponents/AddReview'
 import * as reviewService from './services/reviewService'
 import ReviewsPage from './components/ReviewComponents/ReviewsPage'
+import HangoverTip from './pages/ProfileHangoverTip/HangoverTipForm'
 
 
 const App = () => {
@@ -148,6 +149,11 @@ const App = () => {
           path="/profile-view"
           element={<ProfileView user={user} />}
         />
+        <Route
+          path="/hangover-tip"
+          element={<HangoverTip user={user} />}
+        >
+        </Route>
         <Route
           path="/add-ingredient"
           element={<AddIngredient handleAddIngredient={handleAddIngredient} />}
