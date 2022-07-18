@@ -168,7 +168,7 @@ const App = () => {
         />
         <Route
           path='/edit'
-          element={<EditDrink handleUpdateDrink={handleUpdateDrink} />}        
+          element={<EditDrink ingredients={ingredients} handleUpdateDrink={handleUpdateDrink} />}        
         
         />
         <Route
