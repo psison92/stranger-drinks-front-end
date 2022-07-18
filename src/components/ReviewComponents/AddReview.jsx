@@ -44,15 +44,19 @@ const AddReview = (props) => {
 					<label htmlFor="type-input" className="form-label">
 						Content (required):
 					</label>
-					<input 
-						type="text"
-						className="form-control"
-						id="content-input"
-						name="content"
+          <textarea 
+            name="content" 
+            id="content-input" 
+            type="text"
+            cols="30" 
+            rows="10"
             value={formData.content}
+            className="form-control"
             onChange={handleChange}
-						required
-					/>
+            placeholder="Write review..."
+            required
+          > 
+          </textarea>
 				</div>
 				<div className="form-group mb-4">
 					<label htmlFor="age-input" className="form-label">

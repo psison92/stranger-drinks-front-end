@@ -72,7 +72,7 @@ const App = () => {
   const handleAddReview = async (newReviewData) => {
     const newReview = await reviewService.create(newReviewData)
     setReviews([...reviews, newReview])
-    navigate('/')
+    navigate('/reviews')
   }
 
   const handleDeleteReview = async id => {
