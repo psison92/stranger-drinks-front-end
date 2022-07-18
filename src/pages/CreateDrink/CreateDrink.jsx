@@ -33,6 +33,15 @@ const CreateDrink = (props) => {
 		setSingleIngredient({ ...singleIngredient, [evt.target.name]: evt.target.value })
 	}
 
+	const handleSingleIngredient = (evt, value) => {
+		setSingleIngredient({ ...singleIngredient, 
+			ingredient: {
+				_id: value._id,
+				name: value.name
+			}
+		 })
+	}
+
   const [formData, setFormData] = useState({
 		name: '',
 		alternateName: '',
@@ -54,6 +63,8 @@ const CreateDrink = (props) => {
 	const handleChangePhoto = evt => {
 		setPhotoData({ photo: evt.target.files[0]}) // type file in form returns in array. we only need first index
 	}
+
+
 
 	const handleAddIngredient = evt => {
 		evt.preventDefault()
@@ -134,12 +145,11 @@ const CreateDrink = (props) => {
 						options={props.ingredients}
 						sx={{ width: 300 }}
 						getOptionLabel={(option) => 
-							handleCapitalize(option.name)
+							option.name
 						}
 						onChange={(event, newValue) => {
 							console.log(newValue)
-							setSingleIngredient(newValue)
-							setIngredientID(singleIngredient._id)
+							handleSingleIngredient(event, newValue)
 						}}
 						renderInput={(params) => <TextField {...params} label="Ingredients" />}
 					/>
@@ -178,7 +188,7 @@ const CreateDrink = (props) => {
 					<h3>Ingredients: </h3>
 					{recipeData.map( ( measurement, idx ) =>
 						<div key={`measurement-${idx}`}>
-							<div>Name: { handleCapitalize(measurement.name) }</div>
+							<div>Name: { measurement.ingredient.name }</div>
 							<div>{measurement.quantity} {measurement.unit}</div>
 							
 						</div>
