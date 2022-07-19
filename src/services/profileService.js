@@ -17,6 +17,7 @@ async function getProfile(profileId) {
 
 }
 async function createTip(profileId, formData) {
+  console.log('it connects')
   const res = await fetch(`${BASE_URL}/${profileId}/hangover-tip`, {
     method: 'POST',
     headers: {
@@ -25,6 +26,7 @@ async function createTip(profileId, formData) {
     },
       body: JSON.stringify(formData)
     })
+  console.log('it works')
     
     console.log(profileId)
     return await res.json()
