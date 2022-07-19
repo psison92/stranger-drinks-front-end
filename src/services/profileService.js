@@ -16,13 +16,16 @@ async function getProfile(profileId) {
   return await res.json()
 
 }
-async function createTip(profileId) {
+async function createTip(profileId, formData) {
   const res = await fetch(`${BASE_URL}/${profileId}/hangover-tip`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${tokenService.getToken()}`},
+      'Authorization': `Bearer ${tokenService.getToken()}`,
       'Content-type' : "application/json"
+    },
+      body: JSON.stringify(formData)
     })
+    
     console.log(profileId)
     return await res.json()
   }

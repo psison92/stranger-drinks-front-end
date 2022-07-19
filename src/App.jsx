@@ -30,6 +30,7 @@ const App = () => {
   const [ingredients, setIngredients] = useState([])
   const [reviews, setReviews] = useState([])
   const [hangoverTip, setHangoverTip] = useState([])
+  const [profiles, setProfiles] = useState([])
   
   const navigate = useNavigate()
 
@@ -186,8 +187,7 @@ const App = () => {
           element={<HangoverTip
             user={user}
             handleCreateTip={handleCreateTip}
-
-            />}
+          />}
         >
         </Route>
         <Route
