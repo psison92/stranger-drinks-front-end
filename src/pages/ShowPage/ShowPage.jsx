@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import ShowDrink from "../../components/ShowDrink/ShowDrink";
 import AddReview from "../../components/ReviewComponents/AddReview";
+import ReviewCard from "../../components/ReviewComponents/ReviewCard";
 
 
 const ShowPage = (props) => {
@@ -9,10 +10,7 @@ const ShowPage = (props) => {
   const drinkData = location.state.drink
   //const [reviewData] = useState([props.reviews])
   const filteredReviewData = props.reviews.filter(review => drinkData._id === review.drink._id)
-  // console.log(props.reviews)
-  // console.log(drinkData)
-  console.log(filteredReviewData)
-  console.log(drinkData)
+  
   return (
     <>
     <h5>Drink</h5>
@@ -24,7 +22,11 @@ const ShowPage = (props) => {
       <>
       {filteredReviewData.map(review =>
       <>
-        <p key={review._id}>{review.title}</p>
+        <ReviewCard 
+          review={review}
+          user={props.user}
+          handleDeleteReview={props.handleDeleteReview}
+        />
       </>
 
       )}
@@ -36,7 +38,7 @@ const ShowPage = (props) => {
     </div>
     <AddReview drink={drinkData} handleAddReview={props.handleAddReview}/>
     <div className="drink-header">
-      {/* {drinkData.recipe.length ?
+      {drinkData.recipe.length ?
       <>
         {drinkData.recipe.map(recipe =>
         <>
@@ -46,7 +48,7 @@ const ShowPage = (props) => {
       </>
       :
         <h5>No Recipe Yet</h5>
-      } */}
+      }
     </div>
     </>
   )

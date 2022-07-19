@@ -86,7 +86,7 @@ const App = () => {
   const handleAddReview = async (newReviewData, drinkId) => {
     const newReview = await reviewService.create(newReviewData, drinkId)
     setReviews([...reviews, newReview])
-    // navigate('/reviews')
+  
   }
 
   const handleDeleteReview = async id => {
@@ -233,7 +233,14 @@ const App = () => {
         />
         <Route 
           path='/drinks/:id'
-            element={<ShowPage drinks={drinks} reviews={reviews} handleAddReview={handleAddReview}/>}
+          element={
+            <ShowPage 
+              user={user} 
+              drinks={drinks} 
+              reviews={reviews} 
+              handleAddReview={handleAddReview}
+            />
+          }
         />
       </Routes>
     </>
