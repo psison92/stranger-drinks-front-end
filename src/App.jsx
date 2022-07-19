@@ -145,13 +145,15 @@ const App = () => {
           element={
             <StrangerDrinks 
             styleDiv={{
-              textAlign: 'center',
+              height: '90vh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+
             }}
             styleImg={{
-              marginTop: '2rem',
               width: '90vw', 
               maxWidth: '1200px',
-              margin: '1rem auto', 
             }}
           />
           }
