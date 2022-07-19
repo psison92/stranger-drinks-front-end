@@ -8,7 +8,7 @@ const DrinksPage = (props) => {
     <div className='drink-header'>
         {props.drinks.map(drink =>
         <DrinkCard 
-        key={drink.id}
+        key={drink._id}
         drink={drink}
         user={props.user}
         handleDeleteDrink={props.handleDeleteDrink}
