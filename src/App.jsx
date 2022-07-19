@@ -27,6 +27,7 @@ const App = () => {
   const [drinks, setDrinks] = useState([])
   const [ingredients, setIngredients] = useState([])
   const [reviews, setReviews] = useState([])
+  const [hangoverTip, setHangoverTip] = useState([])
   
   const navigate = useNavigate()
 
@@ -113,10 +114,12 @@ const App = () => {
     setDrinks(newDrinkArray)
 		navigate('/drinks')
   }
-  const handleUpdateProfile = async (updatedProfileData) => {
-    const updatedProfile = await profileService.update(updatedProfile)
-
+  const handleCreateTip = async (newHangoverTipData) => {
+    const newHangoverTip = await newHangoverTip.create(newHangoverTipData)
+    setHangoverTip([...hangoverTip, newHangoverTip])
+    navigate('/profile-view')
   }
+  
 
   return (
     <>
@@ -156,7 +159,11 @@ const App = () => {
         />
         <Route
           path="/hangover-tip"
-          element={<HangoverTip user={user}/>}
+          element={<HangoverTip
+            user={user}
+            handleCreateTip={handleCreateTip}
+
+            />}
         >
         </Route>
         <Route

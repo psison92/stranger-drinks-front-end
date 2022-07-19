@@ -14,15 +14,18 @@ async function getProfile(profileId) {
     headers: { Authorization: `Bearer ${tokenService.getToken()}` },
   })
   return await res.json()
+
 }
-async function update(profileId) {
+async function createTip(profileId) {
   const res = await fetch(`${BASE_URL}/${profileId}/hangover-tip`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${tokenService.getToken()}`},
-  })
-  return await res.json()
-}
+      'Authorization': `Bearer ${tokenService.getToken()}`},
+      'Content-type' : "application/json"
+    })
+    console.log(profileId)
+    return await res.json()
+  }
 
 async function addPhoto(photoData, profileId) {
   const res = await fetch(`${BASE_URL}/${profileId}/add-photo`, {
@@ -33,6 +36,7 @@ async function addPhoto(photoData, profileId) {
     body: photoData
   })
   return await res.json()
+  
 }
 
-export { getAllProfiles, addPhoto , getProfile, update}
+export { getAllProfiles, addPhoto , getProfile, createTip}

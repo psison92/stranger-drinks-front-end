@@ -1,5 +1,16 @@
+import { useState, useRef, useEffect } from "react"
+
+
+
 const HangoverTip = (props) => {
 
+  const [hangoverTip, setHangoverTip] = useState([])
+
+  const handleCreateTip = evt => {
+    setHangoverTip({...hangoverTip, [evt.target.hangoverTip]: evt.target.value })
+  }
+
+  
   return(
     <>
     <div>
