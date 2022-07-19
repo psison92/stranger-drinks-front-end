@@ -19,7 +19,9 @@ const AddReview = (props) => {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    props.handleAddReview(formData)
+		console.log(formData, 'form data')
+		console.log(props.drink._id, 'drink id')
+    props.handleAddReview(formData, props.drink._id)
   }
 
 	return (
