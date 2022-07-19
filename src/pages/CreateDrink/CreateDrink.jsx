@@ -27,27 +27,10 @@ const CreateDrink = (props) => {
 		photo: ''
 	})
 
-
-	// const handleChangeIngredient = (evt, value) => {
-	// 	console.log(evt.target.name)
-	// 	console.log(evt.target.value)
-	// 	setSingleIngredient({ ...singleIngredient, [evt.target.name]: value })
-	// }
-
-	// const handleSingleIngredient = (evt, value) => {
-	// 	setSingleIngredient({ ...singleIngredient, 
-	// 		ingredient: {
-	// 			_id: value._id,
-	// 			name: value.name
-	// 		}
-	// 	 })
-	// }
-
 	const [photoData, setPhotoData] = useState({})
 	const handleChangePhoto = evt => {
-		setPhotoData({ photo: evt.target.files[0]}) // type file in form returns in array. we only need first index
+		setPhotoData({ photo: evt.target.files[0]})
 	}
-
 
 	const handleChange = evt => {
 		setFormData({ ...formData, [evt.target.name]: evt.target.value })
@@ -141,7 +124,7 @@ const CreateDrink = (props) => {
 							<div className={styles.recipeDataBorderLeft}></div>
 							<li className={styles.recipeDataList} key={`item-${idx}`}>
 								<Autocomplete
-									isOptionEqualToValue={(option, value) => option.id === value.id} // Fixes Warning
+									isOptionEqualToValue={(option, value) => option.id === value.id}
 									disablePortal
 									
 									id="ingredient-combo-box"
@@ -186,8 +169,6 @@ const CreateDrink = (props) => {
 									})}
 									required
 								/>
-								{/* conditional render for index 0 */}
-
 								<Fab 
 									variant="extended" 
 									color="primary" 
