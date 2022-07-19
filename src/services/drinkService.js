@@ -51,10 +51,24 @@ async function addPhoto(photoData, drinkId) {
 	return await res.json()
 }
 
+async function createReview(drink, review) {
+  const res = await fetch(`${BASE_URL}/${drink._id}/create-review`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(drink)
+  })
+  return res.json()
+}
+
+
 export {
   create,
   getAll,
   deleteOne,
   update,
-  addPhoto
+  addPhoto,
+  createReview
 }
