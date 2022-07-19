@@ -11,11 +11,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const CreateDrink = (props) => {
   const formElement = useRef()
-	const formElementIngredient = useRef()
-
 	const [validForm, setValidForm] = useState(false)
-	const [validIngredient, setValidIngredient] = useState(false)
-
   const [formData, setFormData] = useState({
 		name: '',
 		alternateName: '',
@@ -120,7 +116,7 @@ const CreateDrink = (props) => {
 					<h3>Current Ingredients: </h3>
 					<ul className={styles.recipeData}>
 					{formData.recipe.map( ( item, idx ) =>
-						<>
+						<div key={item._id}>
 							<div className={styles.recipeDataBorderLeft}></div>
 							<li className={styles.recipeDataList} key={`item-${idx}`}>
 								<Autocomplete
@@ -183,7 +179,7 @@ const CreateDrink = (props) => {
 								</Fab>
 								<hr className={styles.recipeDataLine}></hr>
 							</li>
-						</>
+						</div>
 					)}
 					</ul>
 				</div>
