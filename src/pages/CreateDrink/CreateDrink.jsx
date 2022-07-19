@@ -116,7 +116,7 @@ const CreateDrink = (props) => {
 					<h3>Current Ingredients: </h3>
 					<ul className={styles.recipeData}>
 					{formData.recipe.map( ( item, idx ) =>
-						<div key={item._id}>
+						<div key={`itemKey-${idx}`}>
 							<div className={styles.recipeDataBorderLeft}></div>
 							<li className={styles.recipeDataList} key={`item-${idx}`}>
 								<Autocomplete
