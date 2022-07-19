@@ -62,3 +62,12 @@ hr.recipeDataLine {
   opacity: .75;
 
 }
+
+Button > a, Button > a:hover {
+  background-color: transparent;
+  color: white;
+}
+
+.button {
+  margin: 0 10px;
+}
