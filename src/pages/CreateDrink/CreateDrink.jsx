@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import styles from './CreateDrink.module.css'
 
-// import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
