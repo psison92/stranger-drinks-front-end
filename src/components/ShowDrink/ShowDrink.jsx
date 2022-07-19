@@ -1,11 +1,19 @@
-const ShowDrink = (props) => {
+const ShowDrink = ({recipe}) => {
+
+  const handleabvShow = () => {
+    if (recipe.ingredient.abv) {
+      return '(' + recipe.ingredient.abv + '%)'
+
+    } else
+    return ''
+  }
+  
   return (
     <>
     <div className="card">
       <div className="card-body">
-        <h5 className="card-text">{props.rec.ingredient}</h5>
-        <h5 className="card-text">{props.rec.quantity}</h5>
-        <h5 className="card-text">{props.rec.unit}</h5>
+        <h5 className="card-text">{recipe.quantity} {recipe.unit} of {recipe.ingredient.name} {handleabvShow()}
+        </h5>
       </div>
     </div>
     </>

@@ -18,7 +18,7 @@ const ShowPage = () => {
       <>
       {drinkData.reviews.map(review =>
       <>
-        <p>{review}</p>
+        <p key={review._id}>{review}</p>
       </>
 
       )}
@@ -31,14 +31,14 @@ const ShowPage = () => {
     <div className="drink-header">
       {drinkData.recipe.length ?
       <>
-      {drinkData.recipe.map(rec =>
-      <>
-      <ShowDrink key={rec._id} rec={rec}/>
-      </>
-      )}
+        {drinkData.recipe.map(recipe =>
+        <>
+          <ShowDrink key={recipe._id} recipe={recipe}/>
+        </>
+        )}
       </>
       :
-      <h5>No Recipe Yet</h5>
+        <h5>No Recipe Yet</h5>
       }
     </div>
     </>

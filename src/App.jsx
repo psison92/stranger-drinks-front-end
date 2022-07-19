@@ -20,6 +20,8 @@ import * as reviewService from './services/reviewService'
 import ReviewsPage from './components/ReviewComponents/ReviewsPage'
 import HangoverTip from './pages/ProfileHangoverTip/HangoverTipForm'
 import * as profileService from './services/profileService'
+import EditReview from './components/ReviewComponents/EditReview'
+
 
 
 const App = () => {
@@ -83,12 +85,21 @@ const App = () => {
   const handleAddReview = async (newReviewData) => {
     const newReview = await reviewService.create(newReviewData)
     setReviews([...reviews, newReview])
-    navigate('/')
+    navigate('/reviews')
   }
 
   const handleDeleteReview = async id => {
     const deletedReview = await reviewService.deleteOne(id)
     setReviews(reviews.filter(review => review._id !== deletedReview._id))
+  }
+
+  const handleUpdateReview = async (updatedReviewData) => {
+    const updatedReview = await reviewService.update(updatedReviewData)
+    const newReviewArray = reviews.map(review => 
+      review._id === updatedReview._id ? updatedReview : review
+    )
+    setReviews(newReviewArray)
+		navigate('/reviews')
   }
 
   const drinkPhotoHelper = async (photo, id) => {
@@ -120,6 +131,19 @@ const App = () => {
     navigate('/profile-view')
   }
   
+
+  const handleUpdateIngredient = async (updatedIngredientData, photo) => {
+    const updatedIngredient = await drinkService.update(updatedIngredientData)
+		// If there is a photo...
+    if (photo) {
+      updatedIngredient.photo = await drinkPhotoHelper(photo, updatedIngredient._id)
+    }
+    const newIngredientArray = ingredients.map(ingredient => 
+      ingredient._id === updatedIngredient._id ? updatedIngredient : ingredient
+    )
+    setDrinks(newIngredientArray)
+		navigate('/drinks')
+  }
 
   return (
     <>
@@ -186,7 +210,7 @@ const App = () => {
         />
         <Route
           path='/edit'
-          element={<EditDrink handleUpdateDrink={handleUpdateDrink} />}        
+          element={<EditDrink ingredients={ingredients} handleUpdateDrink={handleUpdateDrink} handleUpdateIngredient={handleUpdateIngredient} />}        
         
         />
         <Route
@@ -202,6 +226,10 @@ const App = () => {
               handleDeleteReview={handleDeleteReview}
             />
           }        
+        />
+        <Route
+          path='/edit-review'
+          element={<EditReview handleUpdateReview={handleUpdateReview} />}        
         />
 
         <Route 
