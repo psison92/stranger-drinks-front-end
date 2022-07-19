@@ -233,7 +233,14 @@ const App = () => {
         />
         <Route 
           path='/drinks/:id'
-            element={<ShowPage drinks={drinks} reviews={reviews} handleAddReview={handleAddReview}/>}
+          element={
+            <ShowPage 
+              user={user} 
+              drinks={drinks} 
+              reviews={reviews} 
+              handleAddReview={handleAddReview}
+            />
+          }
         />
       </Routes>
     </>

@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import ShowDrink from "../../components/ShowDrink/ShowDrink";
 import AddReview from "../../components/ReviewComponents/AddReview";
+import ReviewCard from "../../components/ReviewComponents/ReviewCard";
 
 
 const ShowPage = (props) => {
@@ -21,7 +22,11 @@ const ShowPage = (props) => {
       <>
       {filteredReviewData.map(review =>
       <>
-        <p key={review._id}>{review.title}</p>
+        <ReviewCard 
+          review={review}
+          user={props.user}
+          handleDeleteReview={props.handleDeleteReview}
+        />
       </>
 
       )}
