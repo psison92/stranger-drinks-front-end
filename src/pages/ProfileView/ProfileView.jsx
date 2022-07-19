@@ -37,8 +37,8 @@ const ProfileView = (props) => {
         
         }
         </div>
-        {props.user?.profile._id === profile?._id &&
-        <Link to="/hangover-tip" key={props.user.profile} >
+        {props.user?.profile === profile?._id &&
+        <Link to="/hangover-tip" key={profile} >
           <button>Add a new tip?</button>
         </Link>
         }
