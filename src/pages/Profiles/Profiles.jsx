@@ -20,7 +20,7 @@ const Profiles = () => {
         <>
           {profiles.map(profile => 
           <Link to='/profile-view' key={profile._id} state={{ profile }}>
-            <div >
+            <div>
             <h2>{profile.name}</h2>
             </div>
           </Link>
