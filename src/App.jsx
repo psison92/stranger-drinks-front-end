@@ -118,7 +118,12 @@ const App = () => {
     if (photo) {
       updatedDrink.photo = await drinkPhotoHelper(photo, updatedDrink._id)
     }
-    setDrinks([...drinks, updatedDrink])
+
+    const newDrinkData = drinks.map(drink => 
+      drink._id === updatedDrink._id ? updatedDrink : drink
+    )
+
+    setDrinks(newDrinkData)
 		navigate('/drinks')
   }
   const handleUpdateProfile = async (updatedProfileData) => {
