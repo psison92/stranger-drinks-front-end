@@ -72,7 +72,7 @@ const App = () => {
       newDrink.photo = await drinkPhotoHelper(photo, newDrink._id)
     }
     setDrinks([...drinks, newDrink])
-    navigate('/drinks') // FIXME Where would we like the user to go after creating a drink
+    navigate('/drinks')
   }
   
   const handleAddIngredient = async (newIngredientData) => {
@@ -118,10 +118,7 @@ const App = () => {
     if (photo) {
       updatedDrink.photo = await drinkPhotoHelper(photo, updatedDrink._id)
     }
-    const newDrinkArray = drinks.map(drink => 
-      drink._id === updatedDrink._id ? updatedDrink : drink
-    )
-    setDrinks(newDrinkArray)
+    setDrinks([...drinks, updatedDrink])
 		navigate('/drinks')
   }
   const handleUpdateProfile = async (updatedProfileData) => {
@@ -129,18 +126,6 @@ const App = () => {
 
   }
 
-  const handleUpdateIngredient = async (updatedIngredientData, photo) => {
-    const updatedIngredient = await drinkService.update(updatedIngredientData)
-		// If there is a photo...
-    if (photo) {
-      updatedIngredient.photo = await drinkPhotoHelper(photo, updatedIngredient._id)
-    }
-    const newIngredientArray = ingredients.map(ingredient => 
-      ingredient._id === updatedIngredient._id ? updatedIngredient : ingredient
-    )
-    setDrinks(newIngredientArray)
-		navigate('/drinks')
-  }
 
   return (
     <>
@@ -203,7 +188,7 @@ const App = () => {
         />
         <Route
           path='/edit'
-          element={<EditDrink ingredients={ingredients} handleUpdateDrink={handleUpdateDrink} handleUpdateIngredient={handleUpdateIngredient} />}        
+          element={<EditDrink ingredients={ingredients} handleUpdateDrink={handleUpdateDrink} />}        
         
         />
         <Route
