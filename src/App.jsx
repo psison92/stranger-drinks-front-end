@@ -130,15 +130,19 @@ const App = () => {
 		navigate('/drinks')
   }
   const handleCreateTip = async (newHangoverTipData) => {
-    const newHangoverTip = await newHangoverTip.create(newHangoverTipData)
+    const newHangoverTip = await profileService.createTip(newHangoverTipData)
     setHangoverTip([...hangoverTip, newHangoverTip])
     navigate('/profile-view')
   }
 
-  const handleDeleteTip = async profileId => {
-    const deletedTip = await profileService.deleteTip(profileId)
-    setHangoverTip(hangoverTip.filter(hangoverTip => hangoverTip._id !== deletedTip._id))
-    console.log('this will delete')
+  const handleDeleteTip = async tipId => {
+    console.log('this is sorta working')
+    const updatedProfile = await profileService.deleteTip(tipId)
+    const newProfilesData = profiles.map(profile => 
+      profile._id === updatedProfile._id ? updatedProfile: profile
+    )
+    console.log(newProfilesData)
+    setProfiles(newProfilesData)
   }  
 
   return (
