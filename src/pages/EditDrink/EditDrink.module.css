@@ -11,8 +11,12 @@ form {
   min-width: 300px;
 }
 
-.container div, label, h1 {
-  color: rgb(25, 25, 25);
+h1 {
+  color: rgb(212, 37, 16);
+}
+
+.container div, label {
+  color: black;
   padding-bottom: 0.5rem;
   padding-right: 0.5rem;
 }
