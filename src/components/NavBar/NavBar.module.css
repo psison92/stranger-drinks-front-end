@@ -1,0 +1,174 @@
+:root {
+
+}
+.container {
+  padding: 1rem 0;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navitem, .navitemnolog {
+  transition: 0.25s;
+  color: black;
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  font-family: itc-benguiat, serif;
+  font-weight: 500;
+  font-style: normal;
+  text-shadow: -0.05rem -0.05rem 0.5px #ed2b12,
+  0.05rem -0.05rem 0.5px #ed2b12,
+  -0.05rem 0.05rem 0.5px #ed2b12,
+  0.05rem 0.05rem 0.5px #ed2b12,
+  0 0 15px #630100,
+  0 0 20px #450100;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.navitem:hover, .navitemnolog:hover {
+  transition: 0.25s;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-name: flickering;
+  animation-timing-function: step-start;
+}
+
+.navitemnolog {
+  margin-top: 1rem;
+  font-size: 3rem;
+}
+
+
+
+@media screen and (max-width: 450px) {
+  .container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: normal;
+    
+  }
+}
+
+
+
+/* https://codepen.io/qhdqhdxk/pen/XWbWLmq */
+@keyframes flickering {
+  0% {
+    color: #912914;
+    text-shadow: none;
+    transform: skewX(0);
+  }
+  5% {
+    color: #912914;
+    text-shadow: none;
+    transform: skewX(0);
+  }
+  10% {
+    color: #912914;
+    text-shadow: 1px 1px #eee;
+    transform: skewX(-15deg);
+  }
+  15% {
+    color: #ccc;
+    text-shadow: none;
+    transform: skewX(-15deg);
+  }
+  20% {
+    color: #912914;
+    text-shadow: none;
+    transform: skewX(0);
+  }
+  25% {
+    color: #ccc;
+    text-shadow: 2px 2px #912914;
+    transform: skewX(0);
+  }
+  30% {
+    color: #ccc;
+    text-shadow: 2px 2px #912914;
+    transform: skewX(0);
+  }
+  35% {
+    color: #ccc;
+    text-shadow: 2px 2px #912914;
+    transform: skewX(0);
+  }
+  37% {
+    color: #ccc;
+    text-shadow: 1px 1px #eee;
+    transform: skewX(0);
+  }
+  40% {
+    color: #912914;
+    text-shadow: 1px 1px #eee;
+    transform: skewX(0);
+  }
+  45% {
+    color: #912914;
+    text-shadow: 1px 1px #eee;
+    transform: skewX(0);
+  }
+  50% {
+    color: #912914;
+    text-shadow: none;
+    transform: skewX(0);
+  }
+  55% {
+    color: #912914;
+    text-shadow: none;
+    transform: skewX(0);
+  }
+  60% {
+    color: #912914;
+    text-shadow: none;
+    transform: skewX(0);
+  }
+  65% {
+    color: #912914;
+    text-shadow: none;
+    transform: skewX(0);
+  }
+  68% {
+    color: #912914;
+    text-shadow: 1px 1px #eee;
+    transform: skewX(0);
+  }
+  70% {
+    color: #912914;
+    text-shadow: 1px 1px #eee;
+    transform: skewX(0);
+  }
+  75% {
+    color: #912914;
+    text-shadow: 1px 1px #eee;
+    transform: skewX(10deg);
+  }
+  80% {
+    color: #912914;
+    text-shadow: 1px 1px #eee;
+    transform: skewX(10deg);
+  }
+  85% {
+    color: #912914;
+    text-shadow: 1px 1px #eee;
+    transform: skewX(10deg);
+  }
+  90% {
+    color: #912914;
+    text-shadow: none;
+    transform: skewX(0);
+  }
+  95% {
+    color: #912914;
+    text-shadow: 1px 1px #eee;
+    transform: skewX(0);
+  }
+  100% {
+    color: #912914;
+    text-shadow: none;
+    transform: skewX(0);
+  }
+}

@@ -5,12 +5,13 @@ code {
 
 :root {
   --black: #07020D;
-  --accent: red;
+  --accent: rgb(226, 40, 17);
   --background:--black;
-  --secondary: red;
-  --secondary-dark: red;
+  --secondary: rgb(212, 37, 16);
+  --secondary-dark: rgb(132, 21, 9);
+  --text-red: rgb(212, 37, 16);
 }
-
+/* 
 a {
   color: var(--accent);
   padding: 1vmin;
@@ -18,14 +19,19 @@ a {
   text-decoration: none !important;
 }
 
+
 a:hover {
   color: var(--black);
   background-color: var(--accent);
+} */
+
+a {
+  text-decoration: none;
 }
 
 a.active {
-  color: var(--background);
-  background-color: var(--black);
+  /* color: var(--background);
+  background-color: var(--black); */
   cursor: default;
 }
 
@@ -39,27 +45,51 @@ nav > a {
 
 body {
   background: #000;
+  font-family: latino-urw, serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 label {
-  color: red;
+  color: var(--text-red)
 }
 
-h1{
-  color: red;
+h1, h2, h3, h4, h5 {
+  font-family: itc-benguiat, serif;
+  font-weight: 500;
+  font-style: normal;
+  color: var(--text-red);
+}
+
+h1, h2, h5{
   text-align: center;
 }
 
-h5 {
-  color: red;
-  text-align: center;
+
+
+/* Ice Box */
+/* https://codepen.io/thenocturnalfey/pen/jOEjaZR */
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }
 
-h2 {
-  text-align: center;
-  color: red;
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }
 
-h4 {
-  color: red;
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }
