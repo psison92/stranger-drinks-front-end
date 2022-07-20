@@ -16,7 +16,6 @@ const ReviewCard = ({review, user, drinkData, handleDeleteReview, handleUpdateRe
             to="/edit-review"
             className='btn btn-sm btn-warning'
             state={{review}}
-            handleUpdateReview={handleUpdateReview}
           >
             Edit
           </Link>
