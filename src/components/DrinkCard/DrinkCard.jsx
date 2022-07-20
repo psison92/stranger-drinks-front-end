@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import ShowDrink from '../ShowDrink/ShowDrink'
+import './DrinkCard.css'
 
 
 const DrinkCard = ({drink, user, handleDeleteDrink}) => {
@@ -31,12 +32,14 @@ const DrinkCard = ({drink, user, handleDeleteDrink}) => {
           </button>
         </div>
       }
+      <div className='card-details'>
           <Link
             to={`/drinks/${drink._id}`}
             className='btn btn-sm btn-info'
             state={{drink}}      
             > Details
           </Link>
+      </div>
     </div>
     </>
   )

@@ -4,7 +4,7 @@ import './DrinksPage.css'
 const DrinksPage = (props) => {
   return (
     <>
-    <h1>Drinks Page</h1>
+    <h1 className="drink-page">Drinks Page</h1>
     <div className='drink-header'>
         {props.drinks.map(drink =>
         <DrinkCard 
