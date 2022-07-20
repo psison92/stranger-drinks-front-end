@@ -145,7 +145,7 @@ const App = () => {
     <>
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route 
+        <Route
           path="/"
           element={
             <StrangerDrinks 
@@ -153,12 +153,17 @@ const App = () => {
               height: '90vh',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
-
+              alignItems: 'center',
+              
             }}
             styleImg={{
               width: '90vw', 
               maxWidth: '1200px',
+              animation: 'fadeIn ease 5s',
+              WebkitAnimation: 'fadeIn ease 5s',
+              MozAnimation: 'fadeIn ease 5s',
+              OAnimation: 'fadeIn ease 5s',
+              MSAnimation: 'fadeIn ease 5s',
             }}
           />
           }
