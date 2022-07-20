@@ -23,9 +23,11 @@ const ShowPage = (props) => {
       {filteredReviewData.map(review =>
       <>
         <ReviewCard 
+          drink={drinkData}
           review={review}
           user={props.user}
           handleDeleteReview={props.handleDeleteReview}
+          handleUpdateReview={props.handleUpdateReview}
         />
       </>
 

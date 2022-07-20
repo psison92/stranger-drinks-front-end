@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const ReviewCard = ({review, user, handleDeleteReview,}) => {
+const ReviewCard = ({review, user, drinkData, handleDeleteReview, handleUpdateReview}) => {
   return (
     <>
     <div className="card">
@@ -16,6 +16,7 @@ const ReviewCard = ({review, user, handleDeleteReview,}) => {
             to="/edit-review"
             className='btn btn-sm btn-warning'
             state={{review}}
+            handleUpdateReview={handleUpdateReview}
           >
             Edit
           </Link>
