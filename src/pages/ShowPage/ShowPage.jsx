@@ -24,6 +24,7 @@ const ShowPage = (props) => {
           review={review}
           user={props.user}
           handleDeleteReview={props.handleDeleteReview}
+          handleUpdateReview={props.handleUpdateReview}
         />
       </>
 
