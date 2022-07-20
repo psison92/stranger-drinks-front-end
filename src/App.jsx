@@ -100,7 +100,8 @@ const App = () => {
       review._id === updatedReview._id ? updatedReview : review
     )
     setReviews(newReviewArray)
-		navigate('/reviews')
+		navigate('/drinks')
+    console.log(updatedReviewData)
   }
 
   const drinkPhotoHelper = async (photo, id) => {
@@ -239,6 +240,8 @@ const App = () => {
               drinks={drinks} 
               reviews={reviews} 
               handleAddReview={handleAddReview}
+              handleDeleteReview={handleDeleteReview}
+              handleUpdateReview={handleUpdateReview}
             />
           }
         />
