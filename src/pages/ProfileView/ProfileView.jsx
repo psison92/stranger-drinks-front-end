@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { getProfile } from '../../services/profileService'
 
 const ProfileView = (props) => {
-  const [profileDetails, setProfileDetails] = useState({})
+  const [ profileDetails, setProfileDetails ] = useState({})
   const location = useLocation()
   const profile = location.state.profile
   
@@ -16,6 +16,7 @@ const ProfileView = (props) => {
     } 
     fetchProfileDetails()
   }, [profile._id])
+  console.log(profileDetails)
   return (
     <>
       <main>
@@ -28,15 +29,15 @@ const ProfileView = (props) => {
           } 
           alt="" 
           srcset="" /> */}
-        <h1>Hey Look Its {profile.name}</h1>
-        <div>
-        {location.state.profile.hangoverTip === ""?
-        <h2>Hangover Tip: {profile.hangoverTip}</h2>
+        
+        <h1>Hey Look Its {profileDetails.name}</h1>
+        {profile.hangoverTip.length?
+        <><h2>Hangover Tip: </h2><>
+            {profile.hangoverTip.map(hangoverTip => <h2>{hangoverTip.title} : {hangoverTip.text}</h2>)}
+          </></>
         :
         <h2>No Hangover Tips yet</h2>
-        
         }
-        </div>
         {props.user?.profile === profile?._id &&
         <Link to="/hangover-tip" key={profile} >
           <button>Add a new tip?</button>
