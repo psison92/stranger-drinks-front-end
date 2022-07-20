@@ -32,13 +32,16 @@ async function createTip(profileId, formData) {
     return await res.json()
   }
 
-  async function deleteTip(profileId) {
-    const res = await fetch(`${BASE_URL}/${profileId}`, {
+  async function deleteTip(tipId) {
+    const res = await fetch(`${BASE_URL}/hangover-tip/${tipId}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${tokenService.getToken()}`
-      }
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type' : 'application/json'
+      },
     })
+    console.log('it can delete, just doesnt feel like it yet')
+    console.log('this is the tip', {tipId})
     return res.json()
   }
 
