@@ -32,6 +32,16 @@ async function createTip(profileId, formData) {
     return await res.json()
   }
 
+  async function deleteTip(profileId) {
+    const res = await fetch(`${BASE_URL}/${profileId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      }
+    })
+    return res.json()
+  }
+
 async function addPhoto(photoData, profileId) {
   const res = await fetch(`${BASE_URL}/${profileId}/add-photo`, {
     method: 'PUT',
@@ -44,4 +54,4 @@ async function addPhoto(photoData, profileId) {
   
 }
 
-export { getAllProfiles, addPhoto , getProfile, createTip}
+export { getAllProfiles, addPhoto , getProfile, createTip, deleteTip}

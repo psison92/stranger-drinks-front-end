@@ -134,8 +134,12 @@ const App = () => {
     setHangoverTip([...hangoverTip, newHangoverTip])
     navigate('/profile-view')
   }
-  
 
+  const handleDeleteTip = async profileId => {
+    const deletedTip = await profileService.deleteTip(profileId)
+    setHangoverTip(hangoverTip.filter(hangoverTip => hangoverTip._id !== deletedTip._id))
+    console.log('this will delete')
+  }  
 
   return (
     <>
@@ -173,7 +177,9 @@ const App = () => {
         />
         <Route
           path="/profile-view"
-          element={<ProfileView user={user}/>}
+          element={<ProfileView 
+            user={user} 
+            handleDeleteTip={handleDeleteTip}/>}
         />
         <Route
           path="/hangover-tip"

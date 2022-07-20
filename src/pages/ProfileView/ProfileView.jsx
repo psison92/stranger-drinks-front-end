@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-import { getProfile } from '../../services/profileService'
+import { getProfile, deleteTip } from '../../services/profileService'
 
-const ProfileView = (props) => {
+const ProfileView = (props, handleDeleteTip) => {
   const [ profileDetails, setProfileDetails ] = useState({})
   const location = useLocation()
   const profile = location.state.profile
@@ -33,7 +33,17 @@ const ProfileView = (props) => {
         <h1>Hey Look Its {profileDetails.name}</h1>
         {profile.hangoverTip.length?
         <><h2>Hangover Tip: </h2><>
-            {profile.hangoverTip.map(hangoverTip => <h2>{hangoverTip.title} : {hangoverTip.text}</h2>)}
+            {profile.hangoverTip.map(hangoverTip => 
+            <>
+            <h2>{hangoverTip.title}: {hangoverTip.text}</h2>
+            {props.user?.profile === profile?._id &&
+              <>
+              <button>Rethinking This?</button>
+              
+              <button onClick={()=> handleDeleteTip(hangoverTip._id)}>Regret this?</button>
+              </>
+            }</>
+            )}
           </></>
         :
         <h2>No Hangover Tips yet</h2>
