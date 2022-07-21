@@ -26,6 +26,7 @@ const ProfileView = (props) => {
     const updatedProfile = await profileService.deleteTip(tipId)
     setProfiles(profile)
   }
+
   console.log(profiles.hangoverTip)
   return (
     <>
@@ -49,7 +50,9 @@ const ProfileView = (props) => {
             <h2>{hangoverTip.title}: {hangoverTip.text}</h2>
             {props.user?.profile === profiles?._id &&
               <>
-              <button>Rethinking This?</button>
+              <Link to="/hangover-tip-edit" key={profile}>
+                <button>Rethinking This?</button>
+              </Link>
 
               {/* <Link to="/hangover-tip" key={profile} > */}
                 <button onClick={() => handleDeleteTip(hangoverTip._id)}>Regret this?</button>
@@ -59,12 +62,12 @@ const ProfileView = (props) => {
             )}
           </></>
         :
-        <h2>No Hangover Tips yet</h2>
-        }
-        {props.user?.profile === profiles?._id &&
-        <Link to="/hangover-tip" key={profiles._id} >
-          <button>Add a new tip?</button>
-        </Link>
+        <><h2>No Hangover Tips yet</h2><>
+            {props.user?.profile === profiles?._id &&
+              <Link to="/hangover-tip" key={profiles._id}>
+                <button>Add a new tip?</button>
+              </Link>}
+          </></>
         }
         <h2>Favorite Drinks:{profiles.favoriteDrinks}</h2>
         <h2>Personal Creations:{profiles.drinkList}</h2>
