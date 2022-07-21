@@ -27,3 +27,6 @@ div.card-details {
   padding: 10px;
 }
 
+.card-text {
+  text-transform: capitalize;
+}

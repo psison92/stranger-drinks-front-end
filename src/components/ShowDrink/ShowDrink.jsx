@@ -1,3 +1,5 @@
+import styles from './ShowDrink.module.css'
+
 const ShowDrink = ({recipe}) => {
 
   const handleabvShow = () => {
@@ -12,7 +14,7 @@ const ShowDrink = ({recipe}) => {
     <>
     <div className="card">
       <div className="card-body">
-        <h5 className="card-text">{recipe.quantity} {recipe.unit} of {recipe.ingredient.name} {handleabvShow()}
+        <h5 className="card-text">{recipe.quantity} {recipe.unit} of <span className={styles.ingredient}>{recipe.ingredient.name}</span> {handleabvShow()}
         </h5>
       </div>
     </div>
