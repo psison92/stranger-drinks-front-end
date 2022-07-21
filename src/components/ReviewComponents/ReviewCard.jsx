@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-
+import './ReviewCard.css'
 const ReviewCard = ({review, user, drinkData, handleDeleteReview, handleUpdateReview}) => {
   return (
     <>
