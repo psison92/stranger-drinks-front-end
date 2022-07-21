@@ -22,10 +22,10 @@ const ProfileView = (props) => {
 
   }, [profile._id])
 
-  // const handleDeleteTip = async (tipId) => {
-  //   const updatedProfile = await profileService.deleteTip(tipId)
-  //   setProfiles(profiles)
-  // }
+  const handleDeleteTip = async (tipId) => {
+    const updatedProfile = await profileService.deleteTip(tipId)
+    setProfiles(profile)
+  }
   console.log(profiles.hangoverTip)
   return (
     <>
@@ -52,7 +52,7 @@ const ProfileView = (props) => {
               <button>Rethinking This?</button>
 
               {/* <Link to="/hangover-tip" key={profile} > */}
-                <button >Regret this?</button>
+                <button onClick={() => handleDeleteTip(hangoverTip._id)}>Regret this?</button>
               {/* </Link> */}
               </>
             }</>
