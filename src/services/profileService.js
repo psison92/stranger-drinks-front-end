@@ -40,9 +40,7 @@ async function createTip(profileId, formData) {
         'Content-Type' : 'application/json'
       },
     })
-    console.log('it can delete, just doesnt feel like it yet')
-    console.log('this is the tip', {tipId})
-    return res.json()
+    return await res.json()
   }
 
 async function addPhoto(photoData, profileId) {
