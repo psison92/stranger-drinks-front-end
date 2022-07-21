@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom";
+import '../ReviewComponents/ReviewForm.css'
 
 const EditReview = (props) => {
   const location = useLocation()
@@ -21,8 +22,8 @@ const EditReview = (props) => {
   }
 
 	return (
-		<>
-			<h1>Add Review</h1>
+		<div className="container">
+			<h1>Edit Review</h1>
 			<form autoComplete="off" ref={formElement} onSubmit={handleSubmit}>
 				<div className="form-group mb-3">
 					<label htmlFor="name-input" className="form-label">
@@ -79,7 +80,7 @@ const EditReview = (props) => {
 					</button>
 				</div>
 			</form>
-		</>
+		</div>
 	)
 }
 
