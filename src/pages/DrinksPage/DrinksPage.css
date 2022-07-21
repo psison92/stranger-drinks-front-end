@@ -13,7 +13,17 @@ div.drink-header {
   align-content: center;
   flex-wrap: wrap;
   padding: 10px;
+  margin: 10px auto;
   max-width: 1200px;
-  margin: 10px;
   gap: 10px;
+}
+
+div.card{
+  max-width: 100%;
+  width: 355px;
+}
+
+div.card-body {
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
 }
