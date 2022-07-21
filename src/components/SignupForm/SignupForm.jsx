@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import styles from './SignupForm.module.css'
 import * as authService from '../../services/authService'
 
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 const SignupForm = props => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -49,8 +52,8 @@ const SignupForm = props => {
       className={styles.container}
     >
       <div className={styles.inputContainer}>
-        <label htmlFor="name" className={styles.label}>Name</label>
-        <input
+        <TextField
+          label="Name"
           type="text"
           autoComplete="off"
           id="name"
@@ -60,57 +63,66 @@ const SignupForm = props => {
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="email" className={styles.label}>Email</label>
-        <input
+        <TextField 
           type="text"
           autoComplete="off"
           id="email"
           value={email}
           name="email"
+          label="Email"
           onChange={handleChange}
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="password" className={styles.label}>Password</label>
-        <input
+        <TextField 
           type="password"
           autoComplete="off"
           id="password"
           value={password}
           name="password"
+          label="Password"
           onChange={handleChange}
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="confirm" className={styles.label}>
-          Confirm Password
-        </label>
-        <input
+        <TextField
           type="password"
           autoComplete="off"
           id="confirm"
           value={passwordConf}
           name="passwordConf"
+          label="Confirm Password"
           onChange={handleChange}
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="photo-upload" className={styles.label}>
+        <Button variant="contained" component="label">
           Upload Photo
-        </label>
-        <input
-          type="file"
-          id="photo-upload"
-          name="photo"
-          onChange={handleChangePhoto}
-        />
+          <input 
+            hidden 
+            accept="image/*" 
+            multiple type="file"
+            id="photo-upload"
+            name="photo"
+            onChange={handleChangePhoto}
+            />
+        </Button>
       </div>
       <div className={styles.inputContainer}>
-        <button disabled={isFormInvalid()} className={styles.button}>
-          Sign Up
-        </button>
+        <Button 
+          type="submit"
+          variant="contained"
+          disabled={isFormInvalid()}
+        >
+        Sign Up
+        </Button>
         <Link to="/">
-          <button>Cancel</button>
+          <Button 
+            style={{marginLeft: '5px'}}variant="contained"
+            color="error"
+          >
+            Cancel
+          </Button>
         </Link>
       </div>
     </form>
