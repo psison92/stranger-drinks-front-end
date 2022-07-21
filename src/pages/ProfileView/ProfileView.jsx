@@ -11,6 +11,7 @@ const ProfileView = (props) => {
   const [profiles, setProfiles] = useState([])
   const location = useLocation()
   const profile = location.state.profile
+  const drinklist = props.drinks.filter( drink => drink.owner._id !== profiles._id )
   
   
   useEffect(() => {
@@ -27,7 +28,9 @@ const ProfileView = (props) => {
     setProfiles(profile)
   }
 
-  console.log(profiles.hangoverTip)
+  const drinkList = props.drinks.filter( drink => drink.owner._id === profiles._id )
+  
+  console.log(drinkList)
   return (
     <>
       <main>
@@ -50,13 +53,11 @@ const ProfileView = (props) => {
             <h2>{hangoverTip.title}: {hangoverTip.text}</h2>
             {props.user?.profile === profiles?._id &&
               <>
-              <Link to="/hangover-tip-edit" key={profile}>
-                <button>Rethinking This?</button>
+              <Link to="/hangover-tip" key={profiles._id}>
+                <button onClick={() => handleDeleteTip(hangoverTip._id)}>Replace This?</button>
               </Link>
 
-              {/* <Link to="/hangover-tip" key={profile} > */}
-                <button onClick={() => handleDeleteTip(hangoverTip._id)}>Regret this?</button>
-              {/* </Link> */}
+                <button onClick={() => handleDeleteTip(hangoverTip._id)}>Delete this?</button>
               </>
             }</>
             )}
@@ -69,8 +70,10 @@ const ProfileView = (props) => {
               </Link>}
           </></>
         }
-        <h2>Favorite Drinks:{profiles.favoriteDrinks}</h2>
-        <h2>Personal Creations:{profiles.drinkList}</h2>
+        <h2>Personal Creations:</h2>
+        {drinkList.map( drinkList =>
+            <h3>{drinkList.name}</h3>
+          )}
       </main>
     </>
   )
