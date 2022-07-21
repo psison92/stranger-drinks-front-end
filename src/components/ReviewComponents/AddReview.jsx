@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react"
+import '../ReviewComponents/ReviewForm.css'
 
 const AddReview = (props) => {
   const formElement = useRef()
@@ -25,11 +26,11 @@ const AddReview = (props) => {
   }
 
 	return (
-		<>
+		<div className="container">
 			<h1>Add Review</h1>
 			<form autoComplete="off" ref={formElement} onSubmit={handleSubmit}>
 				<div className="form-group mb-3">
-					<label htmlFor="name-input" className="form-label">
+					<label htmlFor="title-input" className="form-label">
 						Title (required)
 					</label>
 					<input 
@@ -43,7 +44,7 @@ const AddReview = (props) => {
 					/>
 				</div>
 				<div className="form-group mb-3">
-					<label htmlFor="type-input" className="form-label">
+					<label htmlFor="content-input" className="form-label">
 						Content (required):
 					</label>
           <textarea 
@@ -61,7 +62,7 @@ const AddReview = (props) => {
           </textarea>
 				</div>
 				<div className="form-group mb-4">
-					<label htmlFor="age-input" className="form-label">
+					<label htmlFor="rating-input" className="form-label">
 						Rating:
 					</label>
 					<input 
@@ -83,7 +84,7 @@ const AddReview = (props) => {
 					</button>
 				</div>
 			</form>
-		</>
+		</div>
 	)
 }
 
