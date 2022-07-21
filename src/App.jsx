@@ -179,6 +179,7 @@ const App = () => {
           path="/profile-view"
           element={<ProfileView 
             user={user}
+            drinks={drinks}
           />}
         />
         <Route
