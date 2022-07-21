@@ -19,7 +19,6 @@ import AddReview from './components/ReviewComponents/AddReview'
 import * as reviewService from './services/reviewService'
 import ReviewsPage from './components/ReviewComponents/ReviewsPage'
 import HangoverTip from './pages/ProfileHangoverTip/HangoverTipForm'
-import * as profileService from './services/profileService'
 import EditReview from './components/ReviewComponents/EditReview'
 
 
@@ -30,7 +29,6 @@ const App = () => {
   const [ingredients, setIngredients] = useState([])
   const [reviews, setReviews] = useState([])
   const [hangoverTip, setHangoverTip] = useState([])
-  const [profiles, setProfiles] = useState([])
   
   const navigate = useNavigate()
 

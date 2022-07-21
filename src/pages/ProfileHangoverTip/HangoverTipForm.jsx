@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createTip } from "../../services/profileService"
+import styles from './HangoverTipForm.module.css'
 
 const HangoverTip = (props) => {
   const navigate = useNavigate()
@@ -26,7 +27,8 @@ const HangoverTip = (props) => {
   return(
     <>
     <div>
-      <h2>Hello bro, This will be where you put a hangover tip for {props.user.name}</h2>
+      <h2>{props.user.name}</h2>
+      <h3>Tell us how you get by!</h3>
       <div>
         <form autoComplete='off' onSubmit={handleSubmit}>
           <label>
@@ -37,7 +39,7 @@ const HangoverTip = (props) => {
             <h3>Whats The Tip </h3> 
             <input type="text" name="text" id="tip-text" onChange={handleChange} />      
           </label>
-          <button type="submit">Share your secret</button>
+          <button className='btn btn-sm btn-info' type="submit">Share your secret</button>
         </form>
       </div>
     </div>
