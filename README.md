@@ -1,4 +1,4 @@
-# Stranger Drinks (Baby Tracker)
+# Stranger Drinks (Front-End)
 <p>Intro Text</p>
 <p>Decoupled MERN Stack with JWT Auth</p><br>
 
