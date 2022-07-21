@@ -53,13 +53,11 @@ const ProfileView = (props) => {
             <h2>{hangoverTip.title}: {hangoverTip.text}</h2>
             {props.user?.profile === profiles?._id &&
               <>
-              <Link to="/hangover-tip-edit" key={profile}>
-                <button>Rethinking This?</button>
+              <Link to="/hangover-tip" key={profiles._id}>
+                <button onClick={() => handleDeleteTip(hangoverTip._id)}>Replace This?</button>
               </Link>
 
-              {/* <Link to="/hangover-tip" key={profile} > */}
-                <button onClick={() => handleDeleteTip(hangoverTip._id)}>Regret this?</button>
-              {/* </Link> */}
+                <button onClick={() => handleDeleteTip(hangoverTip._id)}>Delete this?</button>
               </>
             }</>
             )}
