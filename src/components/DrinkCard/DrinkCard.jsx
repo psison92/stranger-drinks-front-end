@@ -11,7 +11,6 @@ const DrinkCard = ({drink, user, handleDeleteDrink}) => {
     <>
     <div className="card">
       <div className="card-body">
-        <h2 className="card-text">{drink.owner?.name}'s Drink</h2>
         <h4 className="card-text">{drink.name}</h4>
         <h5>{recipeList}</h5>
       </div>
