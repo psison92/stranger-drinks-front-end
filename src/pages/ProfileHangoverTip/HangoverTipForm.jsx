@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { createTip } from "../../services/profileService"
 
 const HangoverTip = (props) => {
   const navigate = useNavigate()
@@ -14,12 +15,12 @@ const HangoverTip = (props) => {
 
   const handleSubmit= async (e) => {
     e.preventDefault()
-    const newProfile = props.handleCreateTip(props.user.profile, formData)
-    console.log(newProfile)
+    const tip = await createTip(props.user.profile, formData)
+    console.log(tip)
     navigate(-1)
   }
 
-  // console.log(formData)
+  console.log(formData)
 
   
   return(
