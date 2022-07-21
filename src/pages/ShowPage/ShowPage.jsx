@@ -7,10 +7,12 @@ const ShowPage = (props) => {
   const location = useLocation()
   const drinkData = location.state.drink
   const filteredReviewData = props.reviews.filter(review => drinkData._id === review.drink._id)
+  console.log(drinkData)
   
   return (
     <>
     <h5>Drink</h5>
+    <h5>{drinkData.owner.name}'s Creation</h5>
     <h5>{drinkData.name}</h5>
     <h5>{drinkData?.alternateName}</h5>
     <div className="drink-header">
