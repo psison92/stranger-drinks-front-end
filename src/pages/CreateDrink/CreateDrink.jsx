@@ -107,6 +107,9 @@ const CreateDrink = (props) => {
 					variant="extended" 
 					color="primary" 
 					aria-label="add"
+					sx={{ 
+						marginBottom: '1.5rem',
+					}}
 					onClick={handleAddIngredient}
 				>
 
