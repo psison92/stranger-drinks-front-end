@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import '../ReviewComponents/ReviewForm.css'
+import './ReviewForm.css'
 
 const AddReview = (props) => {
   const formElement = useRef()
