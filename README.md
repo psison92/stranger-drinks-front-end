@@ -1,7 +1,7 @@
 # Stranger Drinks (Front-End)
 <p>Decoupled MERN Stack with JWT Auth</p><br>
-<p>In this application you will be able to create a drink from the list of ingredients that have been provided.  From their you will be able to write reviews on a specific drink and be able to view other users drinks and read their reviews.  You will also be able to see everyones drinks that they have created.</p>
-<p>This is also Stranger Things Themed so their will be a list of Stranger Things drinks already created for users to view.</p>
+<p>In this application you will be able to create a drink from the list of ingredients that have been provided.  From there you will be able to write reviews on a specific drink and be able to view other users drinks and read their reviews.  You will also be able to see everyones drinks that they have created.</p>
+<p>This is also Stranger Things Themed so there will be a list of Stranger Things drinks already created for users to view.</p>
 
 
 ## Getting Started: 
@@ -30,7 +30,7 @@ The mix drink section will have a form for you to enter.  The name of the drink 
 
 <img width="1383" alt="Screen Shot 2022-07-21 at 1 13 42 PM" src="https://user-images.githubusercontent.com/104323543/180273930-ff65ede9-a7f6-4934-b069-0bf1d2ff6f47.png">
 
-This is your main drinks page where you can edit,delete or head to the details page where you can write a review on your creation. Enjoy!
+This is your main drinks page where you can edit, delete, or head to the details page where you can write a review on your creation. Enjoy!
 
 
 
@@ -42,6 +42,6 @@ This is your main drinks page where you can edit,delete or head to the details p
 
 ## Next Steps:
 <p> We plan on implementing more into the profile.  We want to be able to add a Hangover tip that has full CRUD functionality. So each user can view other user's tip and be able to create their own</p>
-<p> We also wanted to impliment a bar component where users can go to a different screen and be able to have all the ingredients shown.  From their they would be able to click and ingredient and measurement and be able to put together their own drink.</p>
-<p> We also want to impliment a BAC calculator that might live on the review page.  This feature would be able to calculate your BAC based on the measurements and the strength of ingredients you chose.</p>
-<p> Add a adminstration function for the add ingredient feature.</p>
+<p> We also wanted to implement a bar component where users can go to a different screen and be able to have all the ingredients shown.  From their they would be able to click and ingredient and measurement and be able to put together their own drink.</p>
+<p> We also want to implement a BAC calculator that might live on the review page.  This feature would be able to calculate your BAC based on the measurements and the strength of ingredients you chose.</p>
+<p> Add an admin function for the add ingredient feature.</p>
