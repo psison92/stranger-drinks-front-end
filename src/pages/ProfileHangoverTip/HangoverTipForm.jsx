@@ -29,7 +29,7 @@ const HangoverTip = (props) => {
     <div>
       <h2>{props.user.name}</h2>
       <h3>Tell us how you get by!</h3>
-      <div>
+      <div className={styles.profileContainer}>
         <form autoComplete='off' onSubmit={handleSubmit}>
           <label>
             <h3>Whats This Called</h3>

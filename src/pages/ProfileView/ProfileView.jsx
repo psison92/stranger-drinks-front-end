@@ -31,7 +31,7 @@ const ProfileView = (props) => {
   console.log(drinkList)
   return (
     <>
-      <main>
+      <main className={styles.mainContainer}>
         <h1>{profiles.name}</h1>
         {profiles.hangoverTip?.length?
         <>
@@ -64,7 +64,7 @@ const ProfileView = (props) => {
         {drinkList.map( drinkList =>
         <div key={drinkList._id}>
           <Link to="/drinks" key={drinkList._id}>
-            <h3>{drinkList.name}</h3>
+            <h3 className={styles.drinkList}>{drinkList.name}</h3>
           </Link>
         </div>
           )}

@@ -1,8 +1,8 @@
-main{
+.mainContainer {
   color:red;
   text-align: center;
 }
-h3 {
+.drinkList {
   text-align: center;
   padding-bottom: 0.5rem;
   padding-right: 0.5rem;
