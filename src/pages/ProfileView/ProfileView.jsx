@@ -1,7 +1,7 @@
-
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import * as profileService from '../../services/profileService'
+import styles from './ProfileView.module.css'
 
 
 
@@ -11,8 +11,6 @@ const ProfileView = (props) => {
   const [profiles, setProfiles] = useState([])
   const location = useLocation()
   const profile = location.state.profile
-  const drinklist = props.drinks.filter( drink => drink.owner._id !== profiles._id )
-  
   
   useEffect(() => {
     const fetchProfileDetails = async () => {
@@ -34,30 +32,22 @@ const ProfileView = (props) => {
   return (
     <>
       <main>
-        {/* cant find a default picture yet but will be adding one once one is found */}
-        {/* <img 
-          src={
-            location.state.profile.photo
-            ?location.state.profile.photo
-            :
-          } 
-          alt="" 
-          srcset="" /> */}
-        
-        <h1>Hey Look Its {profiles.name}</h1>
+        <h1>{profiles.name}</h1>
         {profiles.hangoverTip?.length?
         <>
         <h2>Hangover Tip:</h2><>
             {profiles.hangoverTip.map(hangoverTip => 
             <>
-            <h2>{hangoverTip.title}: {hangoverTip.text}</h2>
+            <div key={hangoverTip._id}>
+              <h2>{hangoverTip.title}: {hangoverTip.text}</h2>
+            </div>
             {props.user?.profile === profiles?._id &&
               <>
               <Link to="/hangover-tip" key={profiles._id}>
-                <button onClick={() => handleDeleteTip(hangoverTip._id)}>Replace This?</button>
+                <button className='btn btn-sm btn-warning' onClick={() => handleDeleteTip(hangoverTip._id)}>Replace This?</button>
               </Link>
 
-                <button onClick={() => handleDeleteTip(hangoverTip._id)}>Delete this?</button>
+                <button className="btn btn-sm btn-danger m-left" onClick={() => handleDeleteTip(hangoverTip._id)}>Delete this?</button>
               </>
             }</>
             )}
@@ -66,13 +56,17 @@ const ProfileView = (props) => {
         <><h2>No Hangover Tips yet</h2><>
             {props.user?.profile === profiles?._id &&
               <Link to="/hangover-tip" key={profiles._id}>
-                <button>Add a new tip?</button>
+                <button className='btn btn-sm btn-info'>Add a new tip?</button>
               </Link>}
           </></>
         }
         <h2>Personal Creations:</h2>
         {drinkList.map( drinkList =>
+        <div key={drinkList._id}>
+          <Link to="/drinks" key={drinkList._id}>
             <h3>{drinkList.name}</h3>
+          </Link>
+        </div>
           )}
       </main>
     </>
